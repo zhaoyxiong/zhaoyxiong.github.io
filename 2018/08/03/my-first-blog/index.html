@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>my-first-blog | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="需要：    1.git；    2.github账号；    3.nodejs环境；    4.hexo框架的下载；">
+  <meta name="description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
 <meta name="keywords" content="随笔,博客搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="my-first-blog">
 <meta property="og:url" content="http://yoursite.com/2018/08/03/my-first-blog/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="需要：    1.git；    2.github账号；    3.nodejs环境；    4.hexo框架的下载；">
+<meta property="og:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T09:54:35.189Z">
+<meta property="og:updated_time" content="2018-08-03T14:12:32.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="my-first-blog">
-<meta name="twitter:description" content="需要：    1.git；    2.github账号；    3.nodejs环境；    4.hexo框架的下载；">
+<meta name="twitter:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -187,8 +187,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>需要：<br>    1.git；<br>    2.github账号；<br>    3.nodejs环境；<br>    4.hexo框架的下载；<br><a id="more"></a></p>
-
+        <h2 id="搭建个人博客："><a href="#搭建个人博客：" class="headerlink" title="搭建个人博客："></a>搭建个人博客：</h2><h3 id="需要的环境："><a href="#需要的环境：" class="headerlink" title="需要的环境："></a>需要的环境：</h3><p>1.git,单击此处<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git_download</a>获取最新版git;<br>2.github账号,单击此处获取<a href="https://github.com/" target="_blank" rel="noopener">注册/登录(github)</a>;<br>3.nodejs环境,<a href="">node.js</a>下载,用来搭载其他的<br>4.hexo框架的下载,<a href=""></a><br><a id="more"></a></p>
+<h3 id="首先：github仓库创建"><a href="#首先：github仓库创建" class="headerlink" title="首先：github仓库创建"></a>首先：github仓库创建</h3><p>1.仓库的创建及其简单，登录注册github之后，在登录页面中找到仓库（repositories），点击就可以了；<br>2.仓库的小要求：<br>1&gt;命名为你的 用户名.github.io ；每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库；<br>2&gt;注册的邮箱一定要验证，否则不会成功；<br>3&gt;仓库创建不会立即生效，等待即可；</p>
+<h3 id="绑定域名：略"><a href="#绑定域名：略" class="headerlink" title="绑定域名：略"></a>绑定域名：略</h3><p>如果没有域名申请时间较长，所以可以之后慢慢添加</p>
+<h3 id="配置SSH-key（配置可以说是及其简单）"><a href="#配置SSH-key（配置可以说是及其简单）" class="headerlink" title="配置SSH key（配置可以说是及其简单）"></a>配置SSH key（配置可以说是及其简单）</h3><p>1.配置原因：提交代码需要github权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用ssh key来解决；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已经存在的ssh密钥，其实在我看来没什么作用</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span> <span class="comment">#这句话可以直接复制运行，之后连续三次回车</span></span><br></pre></td></tr></table></figure>
+<p>2.此时生成文件在用户目录，找到 .ssh\id_rsa.pub ，打开并复制里面的详细编码，之后进入github 的主页，设置-&gt; SSH and GPG keys -&gt; New SSH key，将复制的内容填写在key中，title随意；<br>3.测试是否成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 这句话不需要修改，直接此时即可</span></span><br></pre></td></tr></table></figure>
+<p>如果出现：<br>    Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.<br>则已经配置成功了。<br>4.最后的简单配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"xxx"</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h3><p>1.hexo主要基于GitHub Pages，是一个博客发布工具框架，下载后可以以命令行的格式来直接上传，发布，测试自己博客，具体使用可以查看我的另一个博客<a href="/tags/随笔/">用Hexo来写博客的so Easy使用</a>;<br><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a> <br><a href="github: https://github.com/hexojs/hexo" target="_blank" rel="noopener">github中hexo的使用</a><br>2.建议<br>    2.1.建议使用git bash来完成安装（在安装git后自动出现），不建议混合使用window的cmd和git bash；<br>    2.2.hexo配置，注意2.x；<br>    2.3.hexo配置时需要考虑影响的部位，_config.yml配置文件都是分级存在目录中<br>3.hexo的安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>4.hexo安装后的初始化<br>4.1.安装时不需要考虑文件的安装位置，初始化时才考虑：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
+<p>cd指向的即为hexo的安装目录，可以根据自己的使用习惯自行定义</p>
+<p>4.2.安装后使用此命令实现简单的启动，开启本地预览服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
+<p>打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容<br>4.3.主题配置<br>4.3.1.此时，使用的还是默认主题，所以要想自定义主题，可以通过<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方主题</a>直接配置，配置极其简单，按照说明直接配就行；<br>我使用的是这个，感觉比较差不多还可以凑合：<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">hexo-theme-yilia</a><br>4.3.2.选定之后，开始下载，clone之后的自行复制<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure></p>
+<p>修改_config.yml中的theme: landscape改为theme: xxx(你的主题的名称，我的为yilia)，然后重新执行hexo g来重新生成。<br>4.3.3.再次执行：重启服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h3><p>此时，我们已经可以上传了，<br>让我们来回顾下我们配置了什么：<br>    1.ssh key, 2.hexo下载，安装，3.hexo主题及配置，<br>那么接下来就是绑定github了：<br>    在hexo跟目录下的_config.yml中，添加（应该在最后）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git </span><br><span class="line">  repository: git@github.com:xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>xxx为你的用户名<br>此时，若直接执行hexo d，还是会报错，因为还缺少一个两者组合的插件<br>hexo-deployer-git，一定要用git bash执行以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
+<p>至此，在git bash中输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+<p>可算是完了。。。，此时访问<a href="https://xxx.github.io/,就可以直接访问了（需要等待一小会）" target="_blank" rel="noopener">https://xxx.github.io/,就可以直接访问了（需要等待一小会）</a></p>
+<h3 id="搭建之后写博客"><a href="#搭建之后写博客" class="headerlink" title="搭建之后写博客"></a>搭建之后写博客</h3><p>搭建好了，自然是要开始使用了，定位到我们的hexo根目录，执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">'my-first-blog'</span></span><br></pre></td></tr></table></figure></p>
+<p>hexo会帮我们在_posts下生成相关md文件,<br>使用一个编译软件打开就可以写博客了，<br>写好之后，使用 hexo d 将其提交到github,<br>继续访问<a href="https://xxx.github.io/" target="_blank" rel="noopener">https://xxx.github.io/</a> 即可</p>
+<h3 id="可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。"><a href="#可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。" class="headerlink" title="可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。"></a>可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。</h3>
       
 
       
@@ -275,15 +295,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/03/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/03/textTargs/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hello World
+          textTargs
         
       </div>
     </a>
   
+  
+    <a href="/2018/08/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用Hexo来写博客的so Easy使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -308,7 +333,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建个人博客："><span class="toc-number">1.</span> <span class="toc-text">搭建个人博客：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#需要的环境："><span class="toc-number">1.1.</span> <span class="toc-text">需要的环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#首先：github仓库创建"><span class="toc-number">1.2.</span> <span class="toc-text">首先：github仓库创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定域名：略"><span class="toc-number">1.3.</span> <span class="toc-text">绑定域名：略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置SSH-key（配置可以说是及其简单）"><span class="toc-number">1.4.</span> <span class="toc-text">配置SSH key（配置可以说是及其简单）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用hexo搭建博客"><span class="toc-number">1.5.</span> <span class="toc-text">使用hexo搭建博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传到github"><span class="toc-number">1.6.</span> <span class="toc-text">上传到github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搭建之后写博客"><span class="toc-number">1.7.</span> <span class="toc-text">搭建之后写博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。"><span class="toc-number">1.8.</span> <span class="toc-text">可算是完了，至此，这个easy的搭博客算是完了，打字打到手软。。。</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
