@@ -12,11 +12,11 @@
 <meta name="keywords" content="随笔,博客搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="my-first-blog">
-<meta property="og:url" content="http://yoursite.com/2018/08/03/my-first-blog/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/博客搭建过程/index.html">
 <meta property="og:site_name" content="杂货铺">
 <meta property="og:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T14:12:32.653Z">
+<meta property="og:updated_time" content="2018-08-03T14:18:57.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="my-first-blog">
 <meta name="twitter:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
@@ -167,7 +167,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-my-first-blog" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-博客搭建过程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -179,7 +179,7 @@
   
 
         
-        <a href="/2018/08/03/my-first-blog/" class="archive-article-date">
+        <a href="/2018/08/03/博客搭建过程/" class="archive-article-date">
   	<time datetime="2018-08-03T07:41:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
 </a>
         
@@ -199,7 +199,7 @@
 <h3 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h3><p>1.hexo主要基于GitHub Pages，是一个博客发布工具框架，下载后可以以命令行的格式来直接上传，发布，测试自己博客，具体使用可以查看我的另一个博客<a href="/tags/随笔/">用Hexo来写博客的so Easy使用</a>;<br><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a> <br><a href="github: https://github.com/hexojs/hexo" target="_blank" rel="noopener">github中hexo的使用</a><br>2.建议<br>    2.1.建议使用git bash来完成安装（在安装git后自动出现），不建议混合使用window的cmd和git bash；<br>    2.2.hexo配置，注意2.x；<br>    2.3.hexo配置时需要考虑影响的部位，_config.yml配置文件都是分级存在目录中<br>3.hexo的安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></p>
 <p>4.hexo安装后的初始化<br>4.1.安装时不需要考虑文件的安装位置，初始化时才考虑：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
 <p>cd指向的即为hexo的安装目录，可以根据自己的使用习惯自行定义</p>
-<p>4.2.安装后使用此命令实现简单的启动，开启本地预览服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
+<p>4.2.安装后使用此命令实现简单的启动，开启本地预览服务，具体bash命令可以在我的<a href="/2018/08/03/hello-world/">hexo的简单使用</a>中找到；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
 <p>打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 即可看到内容<br>4.3.主题配置<br>4.3.1.此时，使用的还是默认主题，所以要想自定义主题，可以通过<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方主题</a>直接配置，配置极其简单，按照说明直接配就行；<br>我使用的是这个，感觉比较差不多还可以凑合：<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">hexo-theme-yilia</a><br>4.3.2.选定之后，开始下载，clone之后的自行复制<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure></p>
 <p>修改_config.yml中的theme: landscape改为theme: xxx(你的主题的名称，我的为yilia)，然后重新执行hexo g来重新生成。<br>4.3.3.再次执行：重启服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="上传到github"><a href="#上传到github" class="headerlink" title="上传到github"></a>上传到github</h3><p>此时，我们已经可以上传了，<br>让我们来回顾下我们配置了什么：<br>    1.ssh key, 2.hexo下载，安装，3.hexo主题及配置，<br>那么接下来就是绑定github了：<br>    在hexo跟目录下的_config.yml中，添加（应该在最后）<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git </span><br><span class="line">  repository: git@github.com:xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
@@ -281,7 +281,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/03/my-first-blog/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/03/博客搭建过程/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,20 +295,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/03/textTargs/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/03/hexo命令的简单使用/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          textTargs
+          用Hexo来写博客的so Easy使用
         
       </div>
     </a>
   
-  
-    <a href="/2018/08/03/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用Hexo来写博客的so Easy使用</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -450,10 +445,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">测试</a>
               </li>
             
             <div class="clearfix"></div>
