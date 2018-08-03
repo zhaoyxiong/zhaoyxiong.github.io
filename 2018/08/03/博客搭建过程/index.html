@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="杂货铺">
 <meta property="og:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T15:56:50.986Z">
+<meta property="og:updated_time" content="2018-08-03T16:04:31.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="my-first-blog">
 <meta name="twitter:description" content="搭建个人博客：需要的环境：1.git,单击此处git_download获取最新版git;2.github账号,单击此处获取注册/登录(github);3.nodejs环境,node.js下载,用来搭载其他的4.hexo框架的下载,">
@@ -195,8 +195,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"邮件地址"</span> <span class="comment">#这句话可以直接复制运行，之后连续三次回车</span></span><br></pre></td></tr></table></figure>
 <p>2.此时生成文件在用户目录，找到 .ssh\id_rsa.pub ，打开并复制里面的详细编码，之后进入github 的主页，设置-&gt; SSH and GPG keys -&gt; New SSH key，将复制的内容填写在key中，title随意；<br>3.测试是否成功</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 这句话不需要修改，直接此时即可</span></span><br></pre></td></tr></table></figure>
-<p>如果出现：<br>    Hi liuxianan! You’ve successfully authenticated, but GitHub does not provide shell access.<br>则已经配置成功了。<br>4.最后的简单配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"xxx"</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h3><p>1.hexo主要基于GitHub Pages，是一个博客发布工具框架，下载后可以以命令行的格式来直接上传，发布，测试自己博客，具体使用可以查看我的另一个博客<a href="/tags/随笔/">用Hexo来写博客的so Easy使用</a>;<br><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a> <br><a href="github: https://github.com/hexojs/hexo" target="_blank" rel="noopener">github中hexo的使用</a><br>2.建议<br>    2.1.建议使用git bash来完成安装（在安装git后自动出现），不建议混合使用window的cmd和git bash；<br>    2.2.hexo配置，注意2.x；<br>    2.3.hexo配置时需要考虑影响的部位，_config.yml配置文件都是分级存在目录中<br>3.hexo的安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>如果出现：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi liuxianan! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<p>则已经配置成功了。<br>4.最后的简单配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"xxx"</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用hexo搭建博客"><a href="#使用hexo搭建博客" class="headerlink" title="使用hexo搭建博客"></a>使用hexo搭建博客</h3><p>1.hexo主要基于GitHub Pages，是一个博客发布工具框架，下载后可以以命令行的格式来直接上传，发布，测试自己博客，具体使用可以查看我的另一个博客用<a href="/tags/随笔/">Hexo来写博客的so Easy使用</a>;<br><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a> <a href="github: https://github.com/hexojs/hexo" target="_blank" rel="noopener">github中hexo的使用</a><br>2.建议<br>    2.1.建议使用git bash来完成安装（在安装git后自动出现），不建议混合使用window的cmd和git bash；<br>    2.2.hexo配置，注意2.x；<br>    2.3.hexo配置时需要考虑影响的部位，_config.yml配置文件都是分级存在目录中<br>3.hexo的安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></p>
 <p>4.hexo安装后的初始化<br>4.1.安装时不需要考虑文件的安装位置，初始化时才考虑：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /f/Workspaces/hexo/</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
 <p>cd指向的即为hexo的安装目录，可以根据自己的使用习惯自行定义</p>
 <p>4.2.安装后使用此命令实现简单的启动，开启本地预览服务，具体bash命令可以在我的<a href="/2018/08/03/hello-world/">hexo的简单使用</a>中找到；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 实现source文件夹下的md文件，自动生成public文件夹下的html文件</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure></p>
@@ -296,11 +297,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2018/08/03/hexo命令的简单使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用Hexo来写博客的so Easy使用</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2018/08/03/hexo命令的简单使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          用Hexo来写博客的so Easy使用
+        
+      </div>
     </a>
+  
   
 </nav>
 
