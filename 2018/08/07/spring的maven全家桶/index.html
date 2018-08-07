@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java se 错题集锦总结（Final） | 杂货铺</title>
+  <title>spring的maven全家桶 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java se 中final的总结final 简单介绍">
-<meta name="keywords" content="Javase,finall">
+  <meta name="description" content="maven 的pom.xml配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java se 错题集锦总结（Final）">
-<meta property="og:url" content="http://yoursite.com/2018/08/04/Java-se-错题集锦总结（Final）/index.html">
+<meta property="og:title" content="spring的maven全家桶">
+<meta property="og:url" content="http://yoursite.com/2018/08/07/spring的maven全家桶/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="Java se 中final的总结final 简单介绍">
+<meta property="og:description" content="maven 的pom.xml配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-04T01:49:53.116Z">
+<meta property="og:updated_time" content="2018-08-07T00:55:00.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java se 错题集锦总结（Final）">
-<meta name="twitter:description" content="Java se 中final的总结final 简单介绍">
+<meta name="twitter:title" content="spring的maven全家桶">
+<meta name="twitter:description" content="maven 的pom.xml配置1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -167,29 +166,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-se-错题集锦总结（Final）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-spring的maven全家桶" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java se 错题集锦总结（Final）
+      spring的maven全家桶
     </h1>
   
 
         
-        <a href="/2018/08/04/Java-se-错题集锦总结（Final）/" class="archive-article-date">
-  	<time datetime="2018-08-04T01:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
+        <a href="/2018/08/07/spring的maven全家桶/" class="archive-article-date">
+  	<time datetime="2018-08-07T00:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Java-se-中final的总结"><a href="#Java-se-中final的总结" class="headerlink" title="Java se 中final的总结"></a>Java se 中final的总结</h2><h3 id="final-简单介绍"><a href="#final-简单介绍" class="headerlink" title="final 简单介绍"></a>final 简单介绍</h3><a id="more"></a>
-<h3 id="final-编译错误"><a href="#final-编译错误" class="headerlink" title="final 编译错误"></a>final 编译错误</h3><p>通常使用时Java中未初始化的变量不可以直接通过其他变量赋值后使用，但是可以通过常量赋值后使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">byte b1 = 1,b2 = 2, b3;</span><br><span class="line">final b4 = 4,b5 = 5, b6;</span><br><span class="line">b3 = b1 + b2; <span class="comment">#存在编译错误</span></span><br><span class="line">b3 = b4 + b5; <span class="comment">#可以直接编译</span></span><br><span class="line">b6 = b4 + b5; <span class="comment">#常量自然不可以编译，因此存在编译错误</span></span><br><span class="line">System.out.println(b6);</span><br></pre></td></tr></table></figure></p>
-
+        <h2 id="maven-的pom-xml配置"><a href="#maven-的pom-xml配置" class="headerlink" title="maven 的pom.xml配置"></a>maven 的pom.xml配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line">&lt;project xmlns=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span><br><span class="line">         xmlns:xsi=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span><br><span class="line">         xsi:schemaLocation=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line"></span><br><span class="line">    &lt;groupId&gt;lingdong&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lingdong&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;4.0&lt;/version&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.5.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.5.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-web&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.5.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.5.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-core&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-config&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-ldap&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-acl&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-cas&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-taglibs&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.1.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.5.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.7.3&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.7.3&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.mchange&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;c3p0&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;0.9.5.2&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.21.Final&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hibernate-c3p0&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.2.21.Final&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;4.3.2.Final&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;5.1.38&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.hamcrest&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hamcrest-all&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.3&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.7.20&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;thymeleaf&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.thymeleaf&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;thymeleaf-spring4&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.0.2.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -197,21 +194,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">finall</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -262,7 +244,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/04/Java-se-错题集锦总结（Final）/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/07/spring的maven全家桶/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +258,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/04/Java-se-错题集锦总结（变量）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java se 错题集锦总结（变量）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/03/hexo命令的简单使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用Hexo来写博客的so Easy使用</div>
+    <a href="/2018/08/04/Spring-的基本问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring 的基本问题</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -314,7 +287,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-se-中final的总结"><span class="toc-number">1.</span> <span class="toc-text">Java se 中final的总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#final-简单介绍"><span class="toc-number">1.1.</span> <span class="toc-text">final 简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final-编译错误"><span class="toc-number">1.2.</span> <span class="toc-text">final 编译错误</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#maven-的pom-xml配置"><span class="toc-number">1.</span> <span class="toc-text">maven 的pom.xml配置</span></a></li></ol>
                     </div>
                 </span>
             </div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Java se 错题集锦总结（Final） | 杂货铺</title>
+  <title>Spring 的基本问题 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java se 中final的总结final 简单介绍">
-<meta name="keywords" content="Javase,finall">
+  <meta name="description" content="Spring相关问题以及解答：1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点.2.Spring中如何配置业务对象之间的依赖关系？3.Spring中如何为业务对象配置别名？4.Spring中Bean的作用域有哪些?5.Spring中如何实现延迟加载?6.Spring中如何为业务对象注入集合?">
+<meta name="keywords" content="Spring,问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java se 错题集锦总结（Final）">
-<meta property="og:url" content="http://yoursite.com/2018/08/04/Java-se-错题集锦总结（Final）/index.html">
+<meta property="og:title" content="Spring 的基本问题">
+<meta property="og:url" content="http://yoursite.com/2018/08/04/Spring-的基本问题/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="Java se 中final的总结final 简单介绍">
+<meta property="og:description" content="Spring相关问题以及解答：1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点.2.Spring中如何配置业务对象之间的依赖关系？3.Spring中如何为业务对象配置别名？4.Spring中Bean的作用域有哪些?5.Spring中如何实现延迟加载?6.Spring中如何为业务对象注入集合?">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-04T01:49:53.116Z">
+<meta property="og:updated_time" content="2018-08-04T09:05:28.822Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java se 错题集锦总结（Final）">
-<meta name="twitter:description" content="Java se 中final的总结final 简单介绍">
+<meta name="twitter:title" content="Spring 的基本问题">
+<meta name="twitter:description" content="Spring相关问题以及解答：1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点.2.Spring中如何配置业务对象之间的依赖关系？3.Spring中如何为业务对象配置别名？4.Spring中Bean的作用域有哪些?5.Spring中如何实现延迟加载?6.Spring中如何为业务对象注入集合?">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -167,29 +167,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java-se-错题集锦总结（Final）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring-的基本问题" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java se 错题集锦总结（Final）
+      Spring 的基本问题
     </h1>
   
 
         
-        <a href="/2018/08/04/Java-se-错题集锦总结（Final）/" class="archive-article-date">
-  	<time datetime="2018-08-04T01:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
+        <a href="/2018/08/04/Spring-的基本问题/" class="archive-article-date">
+  	<time datetime="2018-08-04T08:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Java-se-中final的总结"><a href="#Java-se-中final的总结" class="headerlink" title="Java se 中final的总结"></a>Java se 中final的总结</h2><h3 id="final-简单介绍"><a href="#final-简单介绍" class="headerlink" title="final 简单介绍"></a>final 简单介绍</h3><a id="more"></a>
-<h3 id="final-编译错误"><a href="#final-编译错误" class="headerlink" title="final 编译错误"></a>final 编译错误</h3><p>通常使用时Java中未初始化的变量不可以直接通过其他变量赋值后使用，但是可以通过常量赋值后使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">byte b1 = 1,b2 = 2, b3;</span><br><span class="line">final b4 = 4,b5 = 5, b6;</span><br><span class="line">b3 = b1 + b2; <span class="comment">#存在编译错误</span></span><br><span class="line">b3 = b4 + b5; <span class="comment">#可以直接编译</span></span><br><span class="line">b6 = b4 + b5; <span class="comment">#常量自然不可以编译，因此存在编译错误</span></span><br><span class="line">System.out.println(b6);</span><br></pre></td></tr></table></figure></p>
-
+        <h3 id="Spring相关问题以及解答："><a href="#Spring相关问题以及解答：" class="headerlink" title="Spring相关问题以及解答："></a>Spring相关问题以及解答：</h3><h2 id="1-请描述Spring的Bean管理中-BeanFactory和ApplicationContext的异同点"><a href="#1-请描述Spring的Bean管理中-BeanFactory和ApplicationContext的异同点" class="headerlink" title="1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点."></a>1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点.</h2><h2 id="2-Spring中如何配置业务对象之间的依赖关系？"><a href="#2-Spring中如何配置业务对象之间的依赖关系？" class="headerlink" title="2.Spring中如何配置业务对象之间的依赖关系？"></a>2.Spring中如何配置业务对象之间的依赖关系？</h2><h2 id="3-Spring中如何为业务对象配置别名？"><a href="#3-Spring中如何为业务对象配置别名？" class="headerlink" title="3.Spring中如何为业务对象配置别名？"></a>3.Spring中如何为业务对象配置别名？</h2><h2 id="4-Spring中Bean的作用域有哪些"><a href="#4-Spring中Bean的作用域有哪些" class="headerlink" title="4.Spring中Bean的作用域有哪些?"></a>4.Spring中Bean的作用域有哪些?</h2><h2 id="5-Spring中如何实现延迟加载"><a href="#5-Spring中如何实现延迟加载" class="headerlink" title="5.Spring中如何实现延迟加载?"></a>5.Spring中如何实现延迟加载?</h2><h2 id="6-Spring中如何为业务对象注入集合"><a href="#6-Spring中如何为业务对象注入集合" class="headerlink" title="6.Spring中如何为业务对象注入集合?"></a>6.Spring中如何为业务对象注入集合?</h2>
       
 
       
@@ -202,11 +200,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">finall</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
         		</li>
       		
 		</ul>
@@ -262,7 +260,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/04/Java-se-错题集锦总结（Final）/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/04/Spring-的基本问题/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +274,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/04/Java-se-错题集锦总结（变量）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/07/spring的maven全家桶/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java se 错题集锦总结（变量）
+          spring的maven全家桶
         
       </div>
     </a>
   
   
-    <a href="/2018/08/03/hexo命令的简单使用/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用Hexo来写博客的so Easy使用</div>
+    <a href="/2018/08/04/Java-se-错题集锦总结（变量）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java se 错题集锦总结（变量）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -314,7 +312,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-se-中final的总结"><span class="toc-number">1.</span> <span class="toc-text">Java se 中final的总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#final-简单介绍"><span class="toc-number">1.1.</span> <span class="toc-text">final 简单介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#final-编译错误"><span class="toc-number">1.2.</span> <span class="toc-text">final 编译错误</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring相关问题以及解答："><span class="toc-number">1.</span> <span class="toc-text">Spring相关问题以及解答：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-请描述Spring的Bean管理中-BeanFactory和ApplicationContext的异同点"><span class="toc-number"></span> <span class="toc-text">1.请描述Spring的Bean管理中,BeanFactory和ApplicationContext的异同点.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Spring中如何配置业务对象之间的依赖关系？"><span class="toc-number"></span> <span class="toc-text">2.Spring中如何配置业务对象之间的依赖关系？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Spring中如何为业务对象配置别名？"><span class="toc-number"></span> <span class="toc-text">3.Spring中如何为业务对象配置别名？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Spring中Bean的作用域有哪些"><span class="toc-number"></span> <span class="toc-text">4.Spring中Bean的作用域有哪些?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Spring中如何实现延迟加载"><span class="toc-number"></span> <span class="toc-text">5.Spring中如何实现延迟加载?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Spring中如何为业务对象注入集合"><span class="toc-number"></span> <span class="toc-text">6.Spring中如何为业务对象注入集合?</span></a>
                     </div>
                 </span>
             </div>
