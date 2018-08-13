@@ -184,13 +184,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"><a href="#Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分" class="headerlink" title="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"></a>Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分</h2><h3 id="静态代码块-gt-main方法-gt-构造代码块-gt-构造方法"><a href="#静态代码块-gt-main方法-gt-构造代码块-gt-构造方法" class="headerlink" title="静态代码块&gt;main方法&gt;构造代码块&gt;构造方法"></a>静态代码块&gt;main方法&gt;构造代码块&gt;构造方法</h3><h3 id="构造代码块与构造方法的区别"><a href="#构造代码块与构造方法的区别" class="headerlink" title="构造代码块与构造方法的区别"></a>构造代码块与构造方法的区别</h3><pre><code>构造代码块：构造代码块中定义的是不同对象共性的初始化内容。 
-</code></pre><p>给所有对象进行初始化，对象一建立就运行，而且优先于构造方法执行<br>    区别：构造代码块对所有对象统一管理，构造方法只针对统一对象</p>
-<h3 id="函数初始化流程"><a href="#函数初始化流程" class="headerlink" title="函数初始化流程"></a>函数初始化流程</h3><pre><code>class被编译执行时，最开始运行的则为静态代码块，由于静态静态代码块基于类的层次，所以最先被执行；
-其次，构造代码块，对象一建立就运行，针对所有的对象的共同的结构初始化；
-再者，就是main函数代码块了，main方法作为程序的入口，也作为静态方法，必须先于其他的方法执行；
-最后，才到了普通代码块，运行普通代码块的方法.
-</code></pre>
+        <h2 id="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"><a href="#Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分" class="headerlink" title="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"></a>Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分</h2>
+        
+          <a class="article-more-a" href="/2018/08/14/Java-se-代码块优先级/#more">more >></a>
+        
       
 
       
