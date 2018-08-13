@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 杂货铺</title>
+  <title>Java-se-代码块优先级 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="杂货铺">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分静态代码块&amp;gt;main方法&amp;gt;构造代码块&amp;gt;构造方法构造代码块与构造方法的区别构造代码块：构造代码块中定义的是不同对象共性的初始化内容。  给所有对象进行初始化，对象一建立就运行，而且优先于构造方法执行    区别：构造代码块对所有对象统一管理，构造方法只针对统一对象 函数初始化流程class被编译执行时，最开">
+<meta name="keywords" content="Javase,Java内置模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-se-代码块优先级">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/Java-se-代码块优先级/index.html">
 <meta property="og:site_name" content="杂货铺">
+<meta property="og:description" content="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分静态代码块&amp;gt;main方法&amp;gt;构造代码块&amp;gt;构造方法构造代码块与构造方法的区别构造代码块：构造代码块中定义的是不同对象共性的初始化内容。  给所有对象进行初始化，对象一建立就运行，而且优先于构造方法执行    区别：构造代码块对所有对象统一管理，构造方法只针对统一对象 函数初始化流程class被编译执行时，最开">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-13T23:55:21.958Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂货铺">
+<meta name="twitter:title" content="Java-se-代码块优先级">
+<meta name="twitter:description" content="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分静态代码块&amp;gt;main方法&amp;gt;构造代码块&amp;gt;构造方法构造代码块与构造方法的区别构造代码块：构造代码块中定义的是不同对象共性的初始化内容。  给所有对象进行初始化，对象一建立就运行，而且优先于构造方法执行    区别：构造代码块对所有对象统一管理，构造方法只针对统一对象 函数初始化流程class被编译执行时，最开">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -162,36 +167,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-se-代码块优先级" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/14/Java-se-代码块优先级/" class="archive-article-date">
-  	<time datetime="2018-08-13T23:43:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/14/Java-se-代码块优先级/">Java-se-代码块优先级</a>
+    <h1 class="article-title" itemprop="name">
+      Java-se-代码块优先级
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/14/Java-se-代码块优先级/" class="archive-article-date">
+  	<time datetime="2018-08-13T23:43:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"><a href="#Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分" class="headerlink" title="Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"></a>Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分</h2><h3 id="静态代码块-gt-main方法-gt-构造代码块-gt-构造方法"><a href="#静态代码块-gt-main方法-gt-构造代码块-gt-构造方法" class="headerlink" title="静态代码块&gt;main方法&gt;构造代码块&gt;构造方法"></a>静态代码块&gt;main方法&gt;构造代码块&gt;构造方法</h3><h3 id="构造代码块与构造方法的区别"><a href="#构造代码块与构造方法的区别" class="headerlink" title="构造代码块与构造方法的区别"></a>构造代码块与构造方法的区别</h3><pre><code>构造代码块：构造代码块中定义的是不同对象共性的初始化内容。 
+</code></pre><p>给所有对象进行初始化，对象一建立就运行，而且优先于构造方法执行<br>    区别：构造代码块对所有对象统一管理，构造方法只针对统一对象</p>
+<h3 id="函数初始化流程"><a href="#函数初始化流程" class="headerlink" title="函数初始化流程"></a>函数初始化流程</h3><pre><code>class被编译执行时，最开始运行的则为静态代码块，由于静态静态代码块基于类的层次，所以最先被执行；
+其次，构造代码块，对象一建立就运行，针对所有的对象的共同的结构初始化；
+再者，就是main函数代码块了，main方法作为程序的入口，也作为静态方法，必须先于其他的方法执行；
+最后，才到了普通代码块，运行普通代码块的方法.
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,363 +216,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/14/Java-se-代码块优先级/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/08/数据结构之树与森林、二叉树的关系/" class="archive-article-date">
-  	<time datetime="2018-08-08T03:13:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/08/数据结构之树与森林、二叉树的关系/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据结构之树与森林、二叉树的关系</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/08/数据结构之树与森林、二叉树的关系/">数据结构之树与森林、二叉树的关系</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分"><span class="toc-number">1.</span> <span class="toc-text">Java中普通代码块，构造代码块，main函数代码块，静态代码块的优先级划分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态代码块-gt-main方法-gt-构造代码块-gt-构造方法"><span class="toc-number">1.1.</span> <span class="toc-text">静态代码块&gt;main方法&gt;构造代码块&gt;构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造代码块与构造方法的区别"><span class="toc-number">1.2.</span> <span class="toc-text">构造代码块与构造方法的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数初始化流程"><span class="toc-number">1.3.</span> <span class="toc-text">函数初始化流程</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/07/数据结构之树与二叉树/" class="archive-article-date">
-  	<time datetime="2018-08-07T03:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/07/数据结构之树与二叉树/">数据结构之树与二叉树</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/07/Spring的maven全家桶/" class="archive-article-date">
-  	<time datetime="2018-08-07T00:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/07/Spring的maven全家桶/">spring的maven全家桶</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">pom.xml</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/04/Spring-的基本问题/" class="archive-article-date">
-  	<time datetime="2018-08-04T08:59:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/04/Spring-的基本问题/">Spring 的基本问题</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">问题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/04/Java-se-错题集锦总结（变量）/" class="archive-article-date">
-  	<time datetime="2018-08-04T01:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/04/Java-se-错题集锦总结（变量）/">Java se 错题集锦总结（变量）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">变量</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/04/Java-se-错题集锦总结（Final）/" class="archive-article-date">
-  	<time datetime="2018-08-04T01:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/04/Java-se-错题集锦总结（Final）/">Java se 错题集锦总结（Final）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">finall</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/03/hexo命令的简单使用/" class="archive-article-date">
-  	<time datetime="2018-08-03T07:41:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/03/hexo命令的简单使用/">用Hexo来写博客的so Easy使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/03/博客搭建过程/" class="archive-article-date">
-  	<time datetime="2018-08-03T07:41:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/03/博客搭建过程/">my-first-blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">博客搭建</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -586,8 +351,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
