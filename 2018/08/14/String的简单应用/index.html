@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>数据结构之树与二叉树 | 杂货铺</title>
+  <title>String的简单应用 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="线索二叉树为什么使用线索二叉树二叉树，在以一般二叉树作为存储结构时，只能直接得到父子节点，而不能直接获取其前驱和后继，所以，有两种办法解决这个问题：    1.遍历获取，（不过可以知道较为麻烦）；    2.修改节点：[LChild, Ltag, data, Rtag, RChild],修改为此种结构，还可以充分利用二叉链表的空链域;">
-<meta name="keywords" content="数据结构,二叉树">
+  <meta name="description" content="StringString实质是final修饰的char数组">
+<meta name="keywords" content="String">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构之树与二叉树">
-<meta property="og:url" content="http://yoursite.com/2018/08/07/数据结构之树与二叉树/index.html">
+<meta property="og:title" content="String的简单应用">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/String的简单应用/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="线索二叉树为什么使用线索二叉树二叉树，在以一般二叉树作为存储结构时，只能直接得到父子节点，而不能直接获取其前驱和后继，所以，有两种办法解决这个问题：    1.遍历获取，（不过可以知道较为麻烦）；    2.修改节点：[LChild, Ltag, data, Rtag, RChild],修改为此种结构，还可以充分利用二叉链表的空链域;">
+<meta property="og:description" content="StringString实质是final修饰的char数组">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-08T03:28:27.410Z">
+<meta property="og:image" content="http://yoursite.com/StringImages/堆方法栈区.png">
+<meta property="og:image" content="http://yoursite.com/StringImages/String测试.jpg">
+<meta property="og:updated_time" content="2018-08-14T16:19:34.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构之树与二叉树">
-<meta name="twitter:description" content="线索二叉树为什么使用线索二叉树二叉树，在以一般二叉树作为存储结构时，只能直接得到父子节点，而不能直接获取其前驱和后继，所以，有两种办法解决这个问题：    1.遍历获取，（不过可以知道较为麻烦）；    2.修改节点：[LChild, Ltag, data, Rtag, RChild],修改为此种结构，还可以充分利用二叉链表的空链域;">
+<meta name="twitter:title" content="String的简单应用">
+<meta name="twitter:description" content="StringString实质是final修饰的char数组">
+<meta name="twitter:image" content="http://yoursite.com/StringImages/堆方法栈区.png">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -167,48 +170,43 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-数据结构之树与二叉树" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-String的简单应用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      数据结构之树与二叉树
+      String的简单应用
     </h1>
   
 
         
-        <a href="/2018/08/07/数据结构之树与二叉树/" class="archive-article-date">
-  	<time datetime="2018-08-07T03:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
+        <a href="/2018/08/14/String的简单应用/" class="archive-article-date">
+  	<time datetime="2018-08-14T15:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h2><h3 id="为什么使用线索二叉树"><a href="#为什么使用线索二叉树" class="headerlink" title="为什么使用线索二叉树"></a>为什么使用线索二叉树</h3><p>二叉树，在以一般二叉树作为存储结构时，只能直接得到父子节点，而不能直接获取其前驱和后继，所以，有两种办法解决这个问题：<br>    1.遍历获取，（不过可以知道较为麻烦）；<br>    2.修改节点：[LChild, Ltag, data, Rtag, RChild],修改为此种结构，还可以充分利用二叉链表的空链域;<br><a id="more"></a></p>
-<h3 id="二叉链表的空链域"><a href="#二叉链表的空链域" class="headerlink" title="二叉链表的空链域"></a>二叉链表的空链域</h3><pre><code>1.在有n个节点的链表中，有n-1个有效的链域，其他 n+1 为null,
-2.修改后可以充分利用null链域
-</code></pre><h3 id="初始化线索二叉树"><a href="#初始化线索二叉树" class="headerlink" title="初始化线索二叉树"></a>初始化线索二叉树</h3><pre><code>1.充分利用二叉树的递归遍历模板，在访问操作是对前驱后继进行设置；
-2.加线索需要利用刚访问过的节点与当前节点关系的信息，需要添加pre引用来记录
-</code></pre><h3 id="查找线索二叉树中的前驱后继"><a href="#查找线索二叉树中的前驱后继" class="headerlink" title="查找线索二叉树中的前驱后继"></a>查找线索二叉树中的前驱后继</h3><pre><code>1.中序线索二叉树
-    1.1.如果Ltag==1,直接看前驱信息
-    1.2.如果Ltag==0，则找左右子树的后继节点
-2.先序线索二叉树
-    2.1.找后继特别容易，根，左，右，所以若有左子树，则为后继，若没有左子树，有右子树，则为后继，若都没有，则LChild为后继，
-    2.2.找前驱，没有办法查找前驱
-3.后续线索二叉树
-    3.1.找前驱容易：左，右，根，若有右子树，则为前驱，若只有左子树，则左子树为前驱，都没有则RChild为前驱
-    3..同理，没有后继
-</code></pre><h3 id="遍历线索二叉树"><a href="#遍历线索二叉树" class="headerlink" title="遍历线索二叉树"></a>遍历线索二叉树</h3><pre><code>1.找到第一个被遍历的节点
-2.查找他的直接后继，直到所有都被访问
-优点：不需要使用递归栈就可直接遍历，循环查找下一个后继节点
-</code></pre><h3 id="线索二叉树的插入和删除"><a href="#线索二叉树的插入和删除" class="headerlink" title="线索二叉树的插入和删除"></a>线索二叉树的插入和删除</h3><pre><code>1.节点的插入和删除不同于一般的二叉树，在插入和删除时会影响节点的线索，所以插入时也需要分情况考虑；
-2.举例：中序线索二叉树插入操作，
-2.1.插入右节点，若为null，则直接插入，修改root的后继为pre，修改当前的前驱为root；
-2.2.若不为null，则插入后root的后继变为pre的后继，pre的前驱为先前节点前驱，左子树的最右下角，右子树的前去为pre；
-</code></pre>
+        <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><pre><code>String实质是final修饰的char数组
+</code></pre><a id="more"></a>
+<h3 id="String常量"><a href="#String常量" class="headerlink" title="String常量"></a>String常量</h3><pre><code>String被final修饰，所以不可以直接直接改变，而在并发程序中，最喜欢的就是final常量了；
+String类实现了Serializable, Comparable, CharSequence接口。
+</code></pre><h3 id="String源码"><a href="#String源码" class="headerlink" title="String源码"></a>String源码</h3><p>1、String属性<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/** The value is used <span class="keyword">for</span> character storage. */</span><br><span class="line">private final char value[];</span><br><span class="line"></span><br><span class="line">/** Cache the <span class="built_in">hash</span> code <span class="keyword">for</span> the string */</span><br><span class="line">private int <span class="built_in">hash</span>; // Default to 0</span><br><span class="line"></span><br><span class="line">/** use serialVersionUID from JDK 1.0.2 <span class="keyword">for</span> interoperability */</span><br><span class="line">private static final long serialVersionUID = -6849794470754667710L;</span><br></pre></td></tr></table></figure></p>
+<p>2、String构造方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//不含参数的构造函数，一般没什么用，因为value是不可变量</span><br><span class="line">public <span class="function"><span class="title">String</span></span>() &#123;</span><br><span class="line">    this.value = new char[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//参数为String类型</span><br><span class="line">public String(String original) &#123;</span><br><span class="line">    this.value = original.value;</span><br><span class="line">    this.hash = original.hash;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//参数为char数组，使用java.utils包中的Arrays类复制</span><br><span class="line">public String(char value[]) &#123;</span><br><span class="line">    this.value = Arrays.copyOf(value, value.length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//从bytes数组中的offset位置开始，将长度为length的字节，以charsetName格式编码，拷贝到value</span><br><span class="line">public String(byte bytes[], int offset, int length, String charsetName)</span><br><span class="line">        throws UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="keyword">if</span> (charsetName == null)</span><br><span class="line">        throw new NullPointerException(<span class="string">"charsetName"</span>);</span><br><span class="line">    checkBounds(bytes, offset, length);</span><br><span class="line">    this.value = StringCoding.decode(charsetName, bytes, offset, length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//调用public String(byte bytes[], int offset, int length, String charsetName)构造函数</span><br><span class="line">public String(byte bytes[], String charsetName)</span><br><span class="line">        throws UnsupportedEncodingException &#123;</span><br><span class="line">    this(bytes, 0, bytes.length, charsetName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3、equals方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">boolean equals(Object anObject)</span><br><span class="line">public boolean equals(Object anObject) &#123;</span><br><span class="line">    //如果引用的是同一个对象，返回真</span><br><span class="line">    <span class="keyword">if</span> (this == anObject) &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    //如果不是String类型的数据，返回假</span><br><span class="line">    <span class="keyword">if</span> (anObject instanceof String) &#123;</span><br><span class="line">        String anotherString = (String) anObject;</span><br><span class="line">        int n = value.length;</span><br><span class="line">        //如果char数组长度不相等，返回假</span><br><span class="line">        <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">            char v1[] = value;</span><br><span class="line">            char v2[] = anotherString.value;</span><br><span class="line">            int i = 0;</span><br><span class="line">            //从后往前单个字符判断，如果有不相等，返回假</span><br><span class="line">            <span class="keyword">while</span> (n-- != 0) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            //每个字符都相等，返回真</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、compareTo方法<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">int compareTo(String anotherString)</span><br><span class="line"></span><br><span class="line">public int compareTo(String anotherString) &#123;</span><br><span class="line">    //自身对象字符串长度len1</span><br><span class="line">    int len1 = value.length;</span><br><span class="line">    //被比较对象字符串长度len2</span><br><span class="line">    int len2 = anotherString.value.length;</span><br><span class="line">    //取两个字符串长度的最小值lim</span><br><span class="line">    int lim = Math.min(len1, len2);</span><br><span class="line">    char v1[] = value;</span><br><span class="line">    char v2[] = anotherString.value;</span><br><span class="line"></span><br><span class="line">    int k = 0;</span><br><span class="line">    //从value的第一个字符开始到最小长度lim处为止，如果字符不相等，返回自身（对象不相等处字符-被比较对象不相等字符）</span><br><span class="line">    <span class="keyword">while</span> (k &lt; lim) &#123;</span><br><span class="line">        char c1 = v1[k];</span><br><span class="line">        char c2 = v2[k];</span><br><span class="line">        <span class="keyword">if</span> (c1 != c2) &#123;</span><br><span class="line">            <span class="built_in">return</span> c1 - c2;</span><br><span class="line">        &#125;</span><br><span class="line">        k++;</span><br><span class="line">    &#125;</span><br><span class="line">    //如果前面都相等，则返回（自身长度-被比较对象长度）</span><br><span class="line">    <span class="built_in">return</span> len1 - len2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>5、hashCode<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int hashCode()</span><br><span class="line"></span><br><span class="line">public int <span class="function"><span class="title">hashCode</span></span>() &#123;</span><br><span class="line">    int h = <span class="built_in">hash</span>;</span><br><span class="line">    //如果<span class="built_in">hash</span>没有被计算过，并且字符串不为空，则进行hashCode计算</span><br><span class="line">    <span class="keyword">if</span> (h == 0 &amp;&amp; value.length &gt; 0) &#123;</span><br><span class="line">        char val[] = value;</span><br><span class="line"></span><br><span class="line">        //计算过程</span><br><span class="line">        //s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</span><br><span class="line">        <span class="keyword">for</span> (int i = 0; i &lt; value.length; i++) &#123;</span><br><span class="line">            h = 31 * h + val[i];</span><br><span class="line">        &#125;</span><br><span class="line">        //<span class="built_in">hash</span>赋值</span><br><span class="line">        <span class="built_in">hash</span> = h;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6、startWith<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">boolean startsWith(String prefix,int toffset)</span><br><span class="line"></span><br><span class="line">public boolean startsWith(String prefix, int toffset) &#123;</span><br><span class="line">    char ta[] = value;</span><br><span class="line">    int to = toffset;</span><br><span class="line">    char pa[] = prefix.value;</span><br><span class="line">    int po = 0;</span><br><span class="line">    int pc = prefix.value.length;</span><br><span class="line">    // Note: toffset might be near -1&gt;&gt;&gt;1.</span><br><span class="line">    //如果起始地址小于0或者（起始地址+所比较对象长度）大于自身对象长度，返回假</span><br><span class="line">    <span class="keyword">if</span> ((toffset &lt; 0) || (toffset &gt; value.length - pc)) &#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    //从所比较对象的末尾开始比较</span><br><span class="line">    <span class="keyword">while</span> (--pc &gt;= 0) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ta[to++] != pa[po++]) &#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public boolean startsWith(String prefix) &#123;</span><br><span class="line">    <span class="built_in">return</span> startsWith(prefix, 0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public boolean endsWith(String suffix) &#123;</span><br><span class="line">    <span class="built_in">return</span> startsWith(suffix, value.length - suffix.value.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>7、replace<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">String replace(char oldChar,char newChar)</span><br><span class="line"></span><br><span class="line">public String replace(char oldChar, char newChar) &#123;</span><br><span class="line">    //新旧值先对比</span><br><span class="line">    <span class="keyword">if</span> (oldChar != newChar) &#123;</span><br><span class="line">        int len = value.length;</span><br><span class="line">        int i = -1;</span><br><span class="line">        char[] val = value; /* avoid getfield opcode */</span><br><span class="line"></span><br><span class="line">        //找到旧值最开始出现的位置</span><br><span class="line">        <span class="keyword">while</span> (++i &lt; len) &#123;</span><br><span class="line">            <span class="keyword">if</span> (val[i] == oldChar) &#123;</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //从那个位置开始，直到末尾，用新值代替出现的旧值</span><br><span class="line">        <span class="keyword">if</span> (i &lt; len) &#123;</span><br><span class="line">            char buf[] = new char[len];</span><br><span class="line">            <span class="keyword">for</span> (int j = 0; j &lt; i; j++) &#123;</span><br><span class="line">                buf[j] = val[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">                char c = val[i];</span><br><span class="line">                buf[i] = (c == oldChar) ? newChar : c;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">return</span> new String(buf, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>8、trim<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">String trim()</span><br><span class="line"></span><br><span class="line">public String <span class="function"><span class="title">trim</span></span>() &#123;</span><br><span class="line">    int len = value.length;</span><br><span class="line">    int st = 0;</span><br><span class="line">    char[] val = value;    /* avoid getfield opcode */</span><br><span class="line"></span><br><span class="line">    //找到字符串前段没有空格的位置</span><br><span class="line">    <span class="keyword">while</span> ((st &lt; len) &amp;&amp; (val[st] &lt;= <span class="string">' '</span>)) &#123;</span><br><span class="line">        st++;</span><br><span class="line">    &#125;</span><br><span class="line">    //找到字符串末尾没有空格的位置</span><br><span class="line">    <span class="keyword">while</span> ((st &lt; len) &amp;&amp; (val[len - 1] &lt;= <span class="string">' '</span>)) &#123;</span><br><span class="line">        len--;</span><br><span class="line">    &#125;</span><br><span class="line">    //如果前后都没有出现空格，返回字符串本身</span><br><span class="line">    <span class="built_in">return</span> ((st &gt; 0) || (len &lt; value.length)) ? substring(st, len) : this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="String对象与字符串常量"><a href="#String对象与字符串常量" class="headerlink" title="String对象与字符串常量"></a>String对象与字符串常量</h3><h4 id="String字符串常量池"><a href="#String字符串常量池" class="headerlink" title="String字符串常量池"></a>String字符串常量池</h4><p>设计之初就是为了节省空间，因为会大量的使用字符串，所以设置了字符串常量池来减少开销。<br>JVM为了提高性能和减少内存开销，在实例化字符串的时候进行了优化<br>1、为字符串开辟了一个字符串常量池，类似于缓存区<br>2、创建字符串常量时，首先判断字符串常量池是否存在该字符串<br>3、存在该字符串返回引用实例，不存在，实例化字符串，放入池中</p>
+<h4 id="实现基础"><a href="#实现基础" class="headerlink" title="实现基础"></a>实现基础</h4><p>设置之初String就是final类型的，所以不用担心数据冲突，因为不会改变；<br>运行时实例创建的全局字符串常量池中有一个表，总是为池中每个唯一的字符串对象维护一个引用,就意味着一直使用的字符串池的常量，所以不会被垃圾回收机制处理。</p>
+<h4 id="堆、栈、方法区"><a href="#堆、栈、方法区" class="headerlink" title="堆、栈、方法区"></a>堆、栈、方法区</h4><p>了解字符串常量池，首先看一下 堆栈方法区<br><img src="/StringImages/堆方法栈区.png" alt="堆栈方法区"><br><strong>堆</strong><br>1、存储的是对象，每个对象都包含的一个与之对应的class<br>2、JVM只存在一个堆区，被所有线程共享，不存在基本类型和对象引用，只存在对象本身；<br>3、对象由垃圾回收负责回收，因此大小和生命周期不需要确定；<br><strong>栈</strong><br>1、每个线程都包含栈区，栈区基本数据类型对象和自定义对象的引用；<br>2、每个栈中的数据(原始类型和对象引用)都是私有的；<br>3、栈分为三个部分，基本类型变量区、执行环境上下文、操作指令区（存放操作指令）；<br>4、数据大小和生命周期是可以确定的，当没有引用指向这个数据时，这个数据就会消失；<br><strong>方法区</strong><br>1、<strong>静态区</strong>，跟堆一样，被所有的线程共享；<br>2、方法区包含的都是在整个程序中永远唯一的元素；<br>字符串常量池存在于方法区<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String str1 = “abc”;</span><br><span class="line">String str2 = “abc”;</span><br><span class="line">String str3 = “abc”;</span><br><span class="line">String str4 = new String(“abc”);</span><br><span class="line">String str5 = new String(“abc”);</span><br></pre></td></tr></table></figure></p>
+<p><img src="/StringImages/String测试.jpg" alt="String测试"></p>
+
       
 
       
@@ -221,11 +219,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		
 		</ul>
@@ -281,7 +275,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/07/数据结构之树与二叉树/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/14/String的简单应用/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +289,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/08/数据结构之树与森林、二叉树的关系/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/14/进程同步以及异步/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          数据结构之树与森林、二叉树的关系
+          进程同步以及异步
         
       </div>
     </a>
   
   
-    <a href="/2018/08/07/Spring的maven全家桶/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">spring的maven全家桶</div>
+    <a href="/2018/08/14/Java-se-异常总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java-ee-异常总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,7 +327,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#线索二叉树"><span class="toc-number">1.</span> <span class="toc-text">线索二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么使用线索二叉树"><span class="toc-number">1.1.</span> <span class="toc-text">为什么使用线索二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二叉链表的空链域"><span class="toc-number">1.2.</span> <span class="toc-text">二叉链表的空链域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初始化线索二叉树"><span class="toc-number">1.3.</span> <span class="toc-text">初始化线索二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找线索二叉树中的前驱后继"><span class="toc-number">1.4.</span> <span class="toc-text">查找线索二叉树中的前驱后继</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遍历线索二叉树"><span class="toc-number">1.5.</span> <span class="toc-text">遍历线索二叉树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线索二叉树的插入和删除"><span class="toc-number">1.6.</span> <span class="toc-text">线索二叉树的插入和删除</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String常量"><span class="toc-number">1.1.</span> <span class="toc-text">String常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String源码"><span class="toc-number">1.2.</span> <span class="toc-text">String源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#String对象与字符串常量"><span class="toc-number">1.3.</span> <span class="toc-text">String对象与字符串常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#String字符串常量池"><span class="toc-number">1.3.1.</span> <span class="toc-text">String字符串常量池</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现基础"><span class="toc-number">1.3.2.</span> <span class="toc-text">实现基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆、栈、方法区"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆、栈、方法区</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
