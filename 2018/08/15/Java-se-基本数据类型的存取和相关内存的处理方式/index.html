@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="杂货铺">
 <meta property="og:description" content="基本数据类型的存取和相关内存的处理1、java管理内存的方式java的内存管理主要有对象的分配和释放问题，释放我们都知道是由JVM自动执行，不需要我们自定义一些控制；分配：分配由程序员控制执行，程序员通过new关键字创建对象，申请内存空间（基本数据类型则不需要new），所有的对阿星都在堆中存放。释放：有JVM主动监测执行，JVM的GC需要主动监测每个对象的引用情况，以便做出释放操作。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-15T09:48:53.855Z">
+<meta property="og:updated_time" content="2018-08-15T10:26:47.053Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-se-基本数据类型的存取和相关内存的处理方式">
 <meta name="twitter:description" content="基本数据类型的存取和相关内存的处理1、java管理内存的方式java的内存管理主要有对象的分配和释放问题，释放我们都知道是由JVM自动执行，不需要我们自定义一些控制；分配：分配由程序员控制执行，程序员通过new关键字创建对象，申请内存空间（基本数据类型则不需要new），所有的对阿星都在堆中存放。释放：有JVM主动监测执行，JVM的GC需要主动监测每个对象的引用情况，以便做出释放操作。">
@@ -187,11 +187,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="基本数据类型的存取和相关内存的处理"><a href="#基本数据类型的存取和相关内存的处理" class="headerlink" title="基本数据类型的存取和相关内存的处理"></a>基本数据类型的存取和相关内存的处理</h2><p><strong>1、java管理内存的方式</strong><br>java的内存管理主要有对象的分配和释放问题，释放我们都知道是由JVM自动执行，不需要我们自定义一些控制；<br>分配：分配由程序员控制执行，程序员通过new关键字创建对象，申请内存空间（基本数据类型则不需要new），所有的对阿星都在<strong>堆</strong>中存放。<br>释放：有JVM主动监测执行，JVM的GC需要主动监测每个对象的引用情况，以便做出释放操作。<br><a id="more"></a><br><strong>2、java的内存泄漏</strong><br>释放时都由JVM的GC自动监测，但是，当图中有些节点仍然可以连通，但是已经没有了再次访问的可能，这种情况就是垃内存泄漏。顾名思义就是内存被占用，无法调用了。</p>
-<p><strong>3、JVM的内存区域组成</strong><br>也可理解为Java编译的数据安排，<br>java内存分为：堆、栈</p>
+        <h2 id="基本数据类型的存取和相关内存的处理"><a href="#基本数据类型的存取和相关内存的处理" class="headerlink" title="基本数据类型的存取和相关内存的处理"></a>基本数据类型的存取和相关内存的处理</h2><h4 id="1、java管理内存的方式"><a href="#1、java管理内存的方式" class="headerlink" title="1、java管理内存的方式"></a>1、java管理内存的方式</h4><p>java的内存管理主要有对象的分配和释放问题，释放我们都知道是由JVM自动执行，不需要我们自定义一些控制；<br>分配：分配由程序员控制执行，程序员通过new关键字创建对象，申请内存空间（基本数据类型则不需要new），所有的对阿星都在<strong>堆</strong>中存放。<br>释放：有JVM主动监测执行，JVM的GC需要主动监测每个对象的引用情况，以便做出释放操作。<br><a id="more"></a></p>
+<h4 id="2、java的内存泄漏"><a href="#2、java的内存泄漏" class="headerlink" title="2、java的内存泄漏"></a>2、java的内存泄漏</h4><p>释放时都由JVM的GC自动监测，但是，当图中有些节点仍然可以连通，但是已经没有了再次访问的可能，这种情况就是垃内存泄漏。顾名思义就是内存被占用，无法调用了。</p>
+<h4 id="3、JVM的内存区域组成"><a href="#3、JVM的内存区域组成" class="headerlink" title="3、JVM的内存区域组成"></a>3、JVM的内存区域组成</h4><p>也可理解为Java编译的数据安排，<br>java内存分为：堆、栈</p>
 <p><strong>栈内存：</strong><br>栈较小，是相对较底层的小，存储的是函数中定义的<strong>基本数据类型</strong>以及对象的<strong>引用变量（引用）</strong>。<br>数据结构中的方法递归调用都分配在栈中，以保证数据结构的可行性以及精确性。所以，每个线程都会分配一个栈。<br>栈分为3个部分：基本类型变量区、执行环境上下文、操作指令区(存放操作指令)。<br>在函数（代码块）中定义一个变量时，java就在栈中为这个变量分配内存空间，当超过变量的作用域后，java会自动释放掉为该变量<br>所分配的内存空间；<br><strong>堆内存：</strong><br>对象都保存在堆中，栈中保存对象的只是堆中地址的引用。每个对象都有与之对应得class，可以获得操作指令。<br>数据结构中的堆在JVM中只有一个堆区，以保证可以一次遍历所有的数据节点，所有线程公用一个堆区域。<br>堆还可以存放数组，以及对象的实例变量。<br>在堆中分配的内存由java虚拟机的自动垃圾回收器来管理</p>
 <p><strong>堆栈的优缺点</strong><br>堆的优势是可以动态分配内存大小，生存期也不必事先告诉编译器，因为它是在运行时动态分配内存的。<br>缺点就是要在运行时动态分配内存，存取速度较慢；<br>栈的优势是，存取速度比堆要快，仅次于直接位于CPU中的寄存器。<br>另外，栈数据可以共享。<br>但缺点是，存在栈中的数据大小与生存期必须是确定的，缺乏灵活性。<br>Java中还定义了一个区<strong>方法区（静态区）：</strong><br>跟堆一样，被所有的线程共享。方法区包含所有的class和static变量。 </p>
-<p><strong>4、java中数据在内存中的存储</strong><br><strong>a)基本数据类型</strong><br>int,short,long,byte,float,double,boolean,char八大基本数据类型，由java定义用于大量应用的直接使用，由于这些基本数据类型的大小，生命周期都是可知的，所以存在栈中。<br>当创建一个int=3，由于栈在同一个线程中可以共享，JVM会先在栈中寻找3这个数据，如果找到则将引用赋出，没有则创建，此时两者指向了同一个3。<br>当其中一个改变时，不同与堆中对象的直接操作，此时会在栈中继续寻找4，如果找到则重新赋出，没有则创建返回地址，这样可以保证栈修改时不会修改了其他数据。也会保证一个数据只存储一次。</p>
+<h4 id="4、java中数据在内存中的存储"><a href="#4、java中数据在内存中的存储" class="headerlink" title="4、java中数据在内存中的存储"></a>4、java中数据在内存中的存储</h4><p><strong>a)基本数据类型</strong><br>int,short,long,byte,float,double,boolean,char八大基本数据类型，由java定义用于大量应用的直接使用，由于这些基本数据类型的大小，生命周期都是可知的，所以存在栈中。<br>当创建一个int=3，由于栈在同一个线程中可以共享，JVM会先在栈中寻找3这个数据，如果找到则将引用赋出，没有则创建，此时两者指向了同一个3。<br>当其中一个改变时，不同与堆中对象的直接操作，此时会在栈中继续寻找4，如果找到则重新赋出，没有则创建返回地址，这样可以保证栈修改时不会修改了其他数据。也会保证一个数据只存储一次。</p>
 <p><strong>b)对象</strong><br>所有的对象都存在于堆中，创建一个对象包括声明和实例化两个步骤:<br>声明一个对象时，对象的引用之前也说过，都放在栈当中，只声明还不可以使用，因为为空指针，没有对应值。<br>初始化对象时，使用new关键字，会在堆中为类的成员变量申请一块对应大小的内存，并初始化为各自的默认值，接着定义显示初始化（类定义时的初始化值），这也是为什么类变量会有默认值；最后调用构造方法，为成员变量赋值，返回堆中内存的引用，所以new语句返回的是引用，这也是为什么可以匿名使用对象的原因了，返回的值也就在栈和队列中建立了一条通路。</p>
 <p><strong>c)多个不同对象的实例</strong><br>在类中对象的创建不同与基本数据类型：对象的创建，只要使用new字符，就会new一个新的对象的实例，所有的成员变量的内存都会重新申请，所以两个对象不会出现同一个引用。</p>
 <p><strong>d)基本数据类型的包装类</strong><br>每个基本数据类型都有自己的包装类，每个包装类和普通类时一样的存储方式。</p>
@@ -199,48 +200,51 @@
 <p>此种格式实现了String对象，那么就会在<strong>栈</strong>中先寻找是否有这样的字符串，有则创建一个新的String类的对象o，并将o的字符串值指向这个地址，并在这个地址记下o，如果有了“abc”的地址，则查找o，返回o的地址；此种格式类似于基本数据类型的存储方式。<br>所以当我们遇到如下问题时，自然一目了然；<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">String str1=<span class="string">"abc"</span>；</span><br><span class="line">String str2=<span class="string">"abc"</span>；</span><br><span class="line">System.out.println(s1==s2)；//<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">String str1= new String(<span class="string">"abc"</span>)；</span><br><span class="line">String str2= <span class="string">"abc"</span>；</span><br><span class="line">System.out.println(str1==str2)；//<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>f)数组</strong><br>数组算是一类特殊的创建，数组的创建一般我们也比较迷惑，知道是属于哪一种的：<br>数组，使用new 特殊字符创建，所以是存在堆中的，new int[3],会在堆中申请3个保存int的空间，首地址自然是放到了栈中。</p>
 <p><strong>g)静态变量</strong><br>当一个变量、方法被定义为static，我们都知道成了类变量、方法，所有类，实例都可以访问<br>对于两种不同的类属性，static属性与instance属性，初始化的时机是不同的。<br>instance属性在创建实例的时候初始化，static属性在类加载，也就是第一次用到这个类的时候初始化，对于后来的实例的创建，不再次进行初始化。<br>instance每次创建不会设置静态的变量的值。</p>
-<p><strong>5、Java的内存管理机制</strong><br>Java中方法，变量，对象都在堆栈中，所以只考虑：<br>实例变量，局部变量和对象：实例变量和对象存储在堆当中；局部变量驻留在栈上；</p>
-<p><strong>6、Java的垃圾处理机制</strong><br>我们都知道，JVM的GC循环监控着图，遍历着是否有对象没有了引用，以便将其放入释放队列，等待释放；<br>Java的垃圾回收不受程序员所控制，都由jre来完成该，jre不仅仅控制垃圾回收，内存的分配也有jre来完成，所以，这是一个超级大线程。<br>回收启动的时间是cpu空闲了或者内存快满了会触发启动，自定义无法控制；<br>当对象没有引用时，即没有线程访问这个对象时，这个对象就会被加入释放队列；<br>加入队列后不能强制执行，java提供了一些方法（如：System.gc()方法），允许你请求JVM执行垃圾回收，而不是要求，虚拟机会尽其所能满足请求，但是不能保证JVM从内存中删除所有不用的对象；<br>一个java程序如果有太多太多的活着的对象，完全可以将内存占满。</p>
+<h4 id="5、Java的内存管理机制"><a href="#5、Java的内存管理机制" class="headerlink" title="5、Java的内存管理机制"></a>5、Java的内存管理机制</h4><p>Java中方法，变量，对象都在堆栈中，所以只考虑：<br>实例变量，局部变量和对象：实例变量和对象存储在堆当中；局部变量驻留在栈上；</p>
+<h4 id="6、Java的垃圾处理机制"><a href="#6、Java的垃圾处理机制" class="headerlink" title="6、Java的垃圾处理机制"></a>6、Java的垃圾处理机制</h4><p>我们都知道，JVM的GC循环监控着图，遍历着是否有对象没有了引用，以便将其放入释放队列，等待释放；<br>Java的垃圾回收不受程序员所控制，都由jre来完成该，jre不仅仅控制垃圾回收，内存的分配也有jre来完成，所以，这是一个超级大线程。<br>回收启动的时间是cpu空闲了或者内存快满了会触发启动，自定义无法控制；<br>当对象没有引用时，即没有线程访问这个对象时，这个对象就会被加入释放队列；<br>加入队列后不能强制执行，java提供了一些方法（如：System.gc()方法），允许你请求JVM执行垃圾回收，而不是要求，虚拟机会尽其所能满足请求，但是不能保证JVM从内存中删除所有不用的对象；<br>一个java程序如果有太多太多的活着的对象，完全可以将内存占满。</p>
 <p>我们要想主动释放某个或某些对象，需要使他们符合对象释放的条件：1）置为空；2）将引用换成其他对象；3）方法内的对象，方法结束自然释放，返回的对象除外；4）隔离对象，当两个对象互相引用，但是和其他对象没有引用，也符合垃圾处理条件；</p>
-<p><strong>7、final的特殊性</strong><br>final修饰后对象保持不变，但是这个不变有两种意思，一个是引用自身的不变和引用对象的不变，举例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">final StringBuffer a= new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">final StringBuffer b= new StringBuffer(<span class="string">"not immutable"</span>);</span><br><span class="line">a=b;//编译期错误</span><br><span class="line">final StringBuffer a=new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">final StringBuffer b=new StringBuffer(<span class="string">"not immutable"</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="7、final的特殊性"><a href="#7、final的特殊性" class="headerlink" title="7、final的特殊性"></a>7、final的特殊性</h4><p>final修饰后对象保持不变，但是这个不变有两种意思，一个是引用自身的不变和引用对象的不变，举例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">final StringBuffer a= new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">final StringBuffer b= new StringBuffer(<span class="string">"not immutable"</span>);</span><br><span class="line">a=b;//编译期错误</span><br><span class="line">final StringBuffer a=new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">final StringBuffer b=new StringBuffer(<span class="string">"not immutable"</span>);</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">final StringBuffer a= new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">a.append（<span class="string">"broken!"</span>);//编译通过</span><br><span class="line">final StringBuffer a=new StringBuffer(<span class="string">"immutable"</span>);</span><br><span class="line">a.append(<span class="string">"broken!"</span>);//编译通过</span><br></pre></td></tr></table></figure>
 <p>由此可见，final指向的对象自身发生变化是不受final控制的，类似于==于equals，==就是只检测引用是否相同，其他的不管。</p>
 <p>因此会引出许多程序漏洞，final只保证引用不变，内部值变化了并不会检测到，所以会出现异常：<br>多线程操作中，一个对象会被多个线程共享，所以一个线程对对象的修改可能会使另一个对象的崩溃，如果使用了final来阻止这个情况的出现，<strong>是徒劳的</strong>；</p>
 <p>还有一点：对象的创建时，在先给全局变量赋默认值时，final不会被赋值，所以final必须写初值。</p>
-<p><strong>8、列出初始化不同的对象需要的时间</strong></p>
-<h1 id="md"><a href="#md" class="headerlink" title="md"></a>md</h1><table>
+<h4 id="8、列出初始化不同的对象需要的时间"><a href="#8、列出初始化不同的对象需要的时间" class="headerlink" title="8、列出初始化不同的对象需要的时间"></a>8、列出初始化不同的对象需要的时间</h4><table>
 <thead>
 <tr>
-<th>水果</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
+<th>运算操作</th>
+<th style="text-align:right">示例</th>
+<th style="text-align:center">标准化时间</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>香蕉</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">5</td>
+<td>本地赋值</td>
+<td style="text-align:right">i = n</td>
+<td style="text-align:center">1.0</td>
 </tr>
 <tr>
-<td>苹果</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">6</td>
+<td>实例赋值</td>
+<td style="text-align:right">this.i = n</td>
+<td style="text-align:center">1.2</td>
 </tr>
 <tr>
-<td>草莓</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">7</td>
+<td>方法调用</td>
+<td style="text-align:right">Funct()</td>
+<td style="text-align:center">5.9</td>
+</tr>
+<tr>
+<td>新建对象</td>
+<td style="text-align:right">New Object()</td>
+<td style="text-align:center">980</td>
+</tr>
+<tr>
+<td>新建数组</td>
+<td style="text-align:right">New int[10]</td>
+<td style="text-align:center">3100</td>
 </tr>
 </tbody>
 </table>
-<pre><code>&lt;tr&gt; &lt;th&gt;运算操作&lt;/th&gt; &lt;th&gt;示例&lt;/th&gt; &lt;th&gt;标准化时间&lt;/th&gt; &lt;/tr&gt; 
-&lt;tr&gt; &lt;th&gt;本地赋值&lt;/th&gt; &lt;th&gt;i = n&lt;/th&gt; &lt;th&gt;1.0&lt;/th&gt; &lt;/tr&gt; 
-&lt;tr&gt; &lt;th&gt;实例赋值&lt;/th&gt; &lt;th&gt;this.i = n&lt;/th&gt; &lt;th&gt;1.2&lt;/th&gt; &lt;/tr&gt;
-&lt;tr&gt; &lt;th&gt;方法调用&lt;/th&gt; &lt;th&gt;Funct()&lt;/th&gt; &lt;th&gt;5.9&lt;/th&gt; &lt;/tr&gt; 
-&lt;tr&gt; &lt;th&gt;新建对象&lt;/th&gt; &lt;th&gt;New Object()&lt;/th&gt; &lt;th&gt;980&lt;/th&gt; &lt;/tr&gt; 
-&lt;tr&gt; &lt;th&gt;新建数组&lt;/th&gt; &lt;th&gt;New int[10]&lt;/th&gt; &lt;th&gt;3100&lt;/th&gt; &lt;/tr&gt; 
-</code></pre><p><strong>9、增强程序的健壮性：</strong><br>1、所以需要尽量少得创建对象；<br>2、不要过滥使用哈希表，有一定开发经验的开发人员经常会使用hash表（hash表在JDK中的一个实现就是HashMap）来缓存一些数据，从而提高系统的运行速度。比如使用HashMap缓存一些物料信息、人员信息等基础资料，这在提高系统速度的同时也加大了系统的内存占用，特别是当缓存的资料比较多的时候。其实我们可以使用操作系统中的缓存的概念来解决这个问题，也就是给被缓存的分配一个一定大小的缓存容器，按照一定的算法淘汰不需要继续缓存的对象，这样一方面会因为进行了对象缓存而提高了系统的运行效率，同时由于缓存容器不是无限制扩大，从而也减少了系统的内存占用。现在有很多开源的缓存实现项目，比如ehcache、oscache等，这些项目都实现了FIFO 、MRU等常见的缓存算法；<br>3、减少使用static修饰；<br>4、少用finalize函数；<br>5、尽量在合适的场景下使用对象池技术以提高系统性能，缩减缩减开销，但是要注意对象池的尺寸不宜过大，及时清除无效对象释放内存资源，综合考虑应用运行环境的内存资源限制，避免过高估计运行环境所提供内存资源的数量；<br>6、少用大量字符串，建议使用StringBuffer对象，因为String是不可变的每次都会新建一个String对象，会造成有很多无用的String，StringBuffer是可变的，会减少空间的浪费。</p>
+<h4 id="9、增强程序的健壮性："><a href="#9、增强程序的健壮性：" class="headerlink" title="9、增强程序的健壮性："></a>9、增强程序的健壮性：</h4><p>1、所以需要尽量少得创建对象；<br>2、不要过滥使用哈希表，有一定开发经验的开发人员经常会使用hash表（hash表在JDK中的一个实现就是HashMap）来缓存一些数据，从而提高系统的运行速度。比如使用HashMap缓存一些物料信息、人员信息等基础资料，这在提高系统速度的同时也加大了系统的内存占用，特别是当缓存的资料比较多的时候。其实我们可以使用操作系统中的缓存的概念来解决这个问题，也就是给被缓存的分配一个一定大小的缓存容器，按照一定的算法淘汰不需要继续缓存的对象，这样一方面会因为进行了对象缓存而提高了系统的运行效率，同时由于缓存容器不是无限制扩大，从而也减少了系统的内存占用。现在有很多开源的缓存实现项目，比如ehcache、oscache等，这些项目都实现了FIFO 、MRU等常见的缓存算法；<br>3、减少使用static修饰；<br>4、少用finalize函数；<br>5、尽量在合适的场景下使用对象池技术以提高系统性能，缩减缩减开销，但是要注意对象池的尺寸不宜过大，及时清除无效对象释放内存资源，综合考虑应用运行环境的内存资源限制，避免过高估计运行环境所提供内存资源的数量；<br>6、少用大量字符串，建议使用StringBuffer对象，因为String是不可变的每次都会新建一个String对象，会造成有很多无用的String，StringBuffer是可变的，会减少空间的浪费。</p>
 
       
 
@@ -357,7 +361,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型的存取和相关内存的处理"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型的存取和相关内存的处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#md"><span class="toc-number"></span> <span class="toc-text">md</span></a>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型的存取和相关内存的处理"><span class="toc-number">1.</span> <span class="toc-text">基本数据类型的存取和相关内存的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、java管理内存的方式"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、java管理内存的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、java的内存泄漏"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、java的内存泄漏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、JVM的内存区域组成"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、JVM的内存区域组成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、java中数据在内存中的存储"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、java中数据在内存中的存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、Java的内存管理机制"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、Java的内存管理机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6、Java的垃圾处理机制"><span class="toc-number">1.0.6.</span> <span class="toc-text">6、Java的垃圾处理机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7、final的特殊性"><span class="toc-number">1.0.7.</span> <span class="toc-text">7、final的特殊性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8、列出初始化不同的对象需要的时间"><span class="toc-number">1.0.8.</span> <span class="toc-text">8、列出初始化不同的对象需要的时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9、增强程序的健壮性："><span class="toc-number">1.0.9.</span> <span class="toc-text">9、增强程序的健壮性：</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -477,6 +481,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
@@ -493,14 +505,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
@@ -509,15 +513,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -526,14 +538,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
               </li>
             
             <div class="clearfix"></div>
