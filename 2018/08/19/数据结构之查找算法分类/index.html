@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Exception | 杂货铺</title>
+  <title>数据结构之查找算法分类 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="杂货铺">
-<meta property="og:url" content="http://yoursite.com/tags/Exception/index.html">
+  <meta name="description" content="查找算法的分类查找算法是数据的主要操作，查找算法的优良自然决定了程序读取数据的时间复杂度，所以好的查找算法可以很大程度上决定算法的优劣。查找算法分为比较式查找和计算式查找算法。">
+<meta name="keywords" content="数据结构,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构之查找算法分类">
+<meta property="og:url" content="http://yoursite.com/2018/08/19/数据结构之查找算法分类/index.html">
 <meta property="og:site_name" content="杂货铺">
+<meta property="og:description" content="查找算法的分类查找算法是数据的主要操作，查找算法的优良自然决定了程序读取数据的时间复杂度，所以好的查找算法可以很大程度上决定算法的优劣。查找算法分为比较式查找和计算式查找算法。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-19T08:11:35.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂货铺">
+<meta name="twitter:title" content="数据结构之查找算法分类">
+<meta name="twitter:description" content="查找算法的分类查找算法是数据的主要操作，查找算法的优良自然决定了程序读取数据的时间复杂度，所以好的查找算法可以很大程度上决定算法的优劣。查找算法分为比较式查找和计算式查找算法。">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -162,68 +167,176 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-数据结构之查找算法分类" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/14/Java-se-异常总结/" class="archive-article-date">
-  	<time datetime="2018-08-14T09:09:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/14/Java-se-异常总结/">Java-ee-异常总结</a>
+    <h1 class="article-title" itemprop="name">
+      数据结构之查找算法分类
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/19/数据结构之查找算法分类/" class="archive-article-date">
+  	<time datetime="2018-08-19T03:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="查找算法的分类"><a href="#查找算法的分类" class="headerlink" title="查找算法的分类"></a>查找算法的分类</h3><p>查找算法是数据的主要操作，查找算法的优良自然决定了程序读取数据的时间复杂度，所以好的查找算法可以很大程度上决定算法的优劣。<br>查找算法分为<strong>比较式查找</strong>和<strong>计算式查找算法</strong>。<br><a id="more"></a></p>
+<h4 id="比较式查找算法"><a href="#比较式查找算法" class="headerlink" title="比较式查找算法"></a>比较式查找算法</h4><p>比较式算法：顾名思义就是比较来进行判断是否满足条件，主要分为几类：基于线性表的查找、基于树的查找。</p>
+<h5 id="基于线性表的查找"><a href="#基于线性表的查找" class="headerlink" title="基于线性表的查找"></a>基于线性表的查找</h5><p>基于线性表的比较主要为顺序查找法、折半查找法、分块查找法。<br><strong>顺序查找法：</strong><br>特点是：用所给的关键字与线性表逐一比较，直到成功或者比较完全，时间复杂度为O(n);<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">list[0] = k; //list[0]为监视哨，用于控制边界，还可以减少判读、增加效率。</span><br><span class="line">int i = list.length;</span><br><span class="line"><span class="keyword">while</span>(list[i] != k)&#123;</span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(i &gt; 0)&#123;</span><br><span class="line">    <span class="built_in">return</span> list[i];</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">return</span> null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>折半查找法：</strong><br>思想：为了提高查找效率，可以选择排序后查找<br>特点是：查找的列表必须为排好序，且为顺序存储。插入删除较为困难<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">while</span>(low &lt;= high)&#123; //边界为low==high时，两个指向同一个值，如果还不等，则直接结束，返回<span class="literal">false</span></span><br><span class="line">    mid = (low + high) / 2;</span><br><span class="line">    //每次判断是否满足条件,优先判断不符合条件的选择，减少判断次数，提高效率</span><br><span class="line">    <span class="keyword">if</span>(list[mid] &gt; k)&#123;</span><br><span class="line">        high = mid - 1;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(list[mid] &lt; k)&#123;</span><br><span class="line">        low = mid + 1;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>分块查找法：</strong><br>思想：结合顺序查找法，又添加了简单的排序<br>特点：分块，但是每个块之间是有大小之分的，对块内的数据进行内部的顺序查找，大化小的解题思路。<br>代码不做特殊赘述。</p>
+<h5 id="基于树的查找法"><a href="#基于树的查找法" class="headerlink" title="基于树的查找法"></a>基于树的查找法</h5><p>将待查找的数据组织成特殊的树形，来提高查找效率。主要的树的查找有：二叉排序树、平衡二叉排序树、B树等。</p>
+<p><strong>二叉排序树：</strong><br>特点：二叉排序树又叫二叉查找树，树的左节点比根小，又节点比根大。中序遍历正好为增序。<br>查找时间复杂度：O((n+1)/2) – O(log2(n)),由于查找顺序与插入的顺序有关，所以不太稳定。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//插入的递归算法</span><br><span class="line">InsertTree(BTree bTree,int key)&#123;</span><br><span class="line">    <span class="keyword">if</span>(bTree.val &gt; key)&#123;</span><br><span class="line">        InsertTree(bTree.lChild,key);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bTree.val &lt; key)&#123;</span><br><span class="line">        InsertTree(bTree.RChild,key);</span><br><span class="line">    &#125;//如果为空时，说明可以直接插入，由于是最终成功时条件，所以放在最后是最好的</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(bTree == null)&#123;</span><br><span class="line">        BTree bTemp = new Btree();</span><br><span class="line">        bTemp.val = ley;</span><br><span class="line">        bTemp.lChild = null;</span><br><span class="line">        bTemp.rChild = null;</span><br><span class="line">        bTree = bTemp;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//二叉排序树的递归查找</span><br><span class="line"></span><br><span class="line">BTree SearchTree(BTree bTree,int key)&#123;</span><br><span class="line">    <span class="keyword">if</span>(bTree == null)&#123;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(bTree.val &gt; key)&#123;</span><br><span class="line">        SearchTree(bTree.lChild,key);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bTree.val &lt; key)&#123;</span><br><span class="line">        SearchTree(bTree.rChild,key);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bTree.val == key)&#123;</span><br><span class="line">        <span class="built_in">return</span> bTree;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//二叉排序树的非递归查找</span><br><span class="line"></span><br><span class="line">BTree SearchTree(BTree bTree,int key)&#123;</span><br><span class="line">    <span class="keyword">if</span>(bTree == null)&#123;</span><br><span class="line">        <span class="built_in">return</span> null;</span><br><span class="line">    &#125;</span><br><span class="line">    BTree bTemp = bTree;</span><br><span class="line">    <span class="keyword">while</span>(bTemp != null)&#123;</span><br><span class="line">        <span class="keyword">if</span>(bTemp.val &gt; key)&#123;</span><br><span class="line">            bTemp = bTemp.lChild;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(bTemp.val &lt; key)&#123;</span><br><span class="line">            bTemp = bTemp.rChild;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">return</span> bTemp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>平衡二叉排序树：</strong><br>思想：由于二叉排序树不太稳定，所以需要在每次插入后将二叉树矫正成为稳定的二叉树结构，所以有了平衡算法。<br>特点：节点的左右子树的层次相差不得超过1；<br>分类：由于左右子树的不同，矫正时的方法也不同，分为LL、LR、RR、RL。<br>LL型二叉排序树：平衡调整<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//平衡二叉排序树的LL型：A.bf = 2,B.bf = 1;</span><br><span class="line">B = A.lChild;</span><br><span class="line">A.lChild = B.rChild;</span><br><span class="line">B.rChild = A;</span><br><span class="line">A.bf = 0;B.bf = 0;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(FA == null)&#123;</span><br><span class="line">    t = B;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(A == FA.lChild)&#123;</span><br><span class="line">    FA.lChild = B;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    FA.rChild = B;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>LR型二叉排序树：平衡调整<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//LR平衡二叉排序树A.bf = 2;B.bf = -1;C.bf = 1;</span><br><span class="line">B = A.lChild;</span><br><span class="line">C = B.rChild;</span><br><span class="line">B.rChild = C.lChild;</span><br><span class="line">A.lChild = C.rChild;</span><br><span class="line">C.lChild = B;</span><br><span class="line"><span class="keyword">if</span>(S.key &lt; C.val )&#123;</span><br><span class="line">    A.bf = -1;B.bf = 0;C.bf = 0;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(S.key &gt; C.val)&#123;</span><br><span class="line">    A.bf = 0;B.bf = 1;C.bf = 0;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(S.key == c.val)&#123;</span><br><span class="line">    A.bf = 0;B.bf = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//最后接到原A处</span><br><span class="line"><span class="keyword">if</span>(FA == null)&#123;</span><br><span class="line">    t = C;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(A == FA.lChild)&#123;</span><br><span class="line">    FA.lChild = C;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    FA.rChild = C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>B树：</strong><br>m路查找树，B树与二叉树类似，有相同的规则，只是左右子树多了一些，遍历时原理还是一致的；<br>遍历时，原本二叉树的递归遍历为if条件判断，B树则需要修改为while判断，以便遍历到每个左右子树，类似于图的遍历；</p>
+<p>B树有一个较为特殊之处就是B树插入时的分裂了，B树插入时会有一个简单的分裂，以保证每个节点都有小于m个分支的约束条件；</p>
+<h4 id="计算式查找算法"><a href="#计算式查找算法" class="headerlink" title="计算式查找算法"></a>计算式查找算法</h4><p>计算式查找算法目前只有哈希算法，或者说计算式查找算法也可叫哈希算法。<br>思想：先建立对应关系，将原本的遍历比较消耗的大量时间转换为：通过存储的规范化，使得查找时只需按原规律计算即可得到结果，大量的缩减了查找的时间。<br>主要问题：构造方法、冲突处理</p>
+<p><strong>构造方法：</strong><br>1、数字分析法：对数字进行人为的分析，找出对应关系；<br>2、平方取中法：按需要取平方后的关键字编码；<br>3、分段叠加法：<br>4、除留余数法：m为哈希表长，p为小于等于m的最大素数，H(k) = k % p;<br>5、伪随机数法：H(key) = random(key);<br><strong>处理冲突：</strong><br>1、开放定址法：（也叫再散列）就是散列冲突时继续按照某种规则散列：主要有线性散列、二次探测散列、伪随机探测再散列；<br>2、在哈希法：(同时构造多个哈希函数，一个冲突再使用另一个) H = RH(key) i = 1,2,…,k<br>3、链地址法：<br>4、建立公共溢出区：哈希表分为基本表和溢出表；</p>
+<p><strong>常见问题：</strong><br>手工计算查找成功的平均查找长度：<br>ASL = (1/个数)(p*l的和)。<br>手工计算查找失败的平均查找长度：<br>ASL = (1/哈希个数)(比较不成功的次数的和)。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Exception</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Error</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/19/数据结构之查找算法分类/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/08/15/Java-se-方法调用时参数的变化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java-se-方法调用时参数的变化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#查找算法的分类"><span class="toc-number">1.</span> <span class="toc-text">查找算法的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#比较式查找算法"><span class="toc-number">1.1.</span> <span class="toc-text">比较式查找算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#基于线性表的查找"><span class="toc-number">1.1.1.</span> <span class="toc-text">基于线性表的查找</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基于树的查找法"><span class="toc-number">1.1.2.</span> <span class="toc-text">基于树的查找法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#计算式查找算法"><span class="toc-number">1.2.</span> <span class="toc-text">计算式查找算法</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -246,9 +359,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
