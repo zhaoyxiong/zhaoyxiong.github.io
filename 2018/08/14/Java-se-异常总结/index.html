@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java-ee-异常总结 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对1234567try &amp;#123;     /** try */&amp;#125;catch( )&amp;#123;    /** catch */&amp;#125; finally&amp;#123;    /** finally */&amp;#125; 这种结构非常熟悉，使用频率极高。">
+  <meta name="description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对">
 <meta name="keywords" content="Javase,Exception,Error">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-ee-异常总结">
 <meta property="og:url" content="http://yoursite.com/2018/08/14/Java-se-异常总结/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对1234567try &amp;#123;     /** try */&amp;#125;catch( )&amp;#123;    /** catch */&amp;#125; finally&amp;#123;    /** finally */&amp;#125; 这种结构非常熟悉，使用频率极高。">
+<meta property="og:description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/ExceptionImages/ClassifyException.jpg">
 <meta property="og:image" content="http://yoursite.com/ExceptionImages/DefinitionException.png">
-<meta property="og:updated_time" content="2018-08-14T14:43:59.043Z">
+<meta property="og:updated_time" content="2018-08-19T08:16:29.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-ee-异常总结">
-<meta name="twitter:description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对1234567try &amp;#123;     /** try */&amp;#125;catch( )&amp;#123;    /** catch */&amp;#125; finally&amp;#123;    /** finally */&amp;#125; 这种结构非常熟悉，使用频率极高。">
+<meta name="twitter:description" content="异常总结异常的作用对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对">
 <meta name="twitter:image" content="http://yoursite.com/ExceptionImages/ClassifyException.jpg">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
@@ -190,8 +190,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="异常总结"><a href="#异常总结" class="headerlink" title="异常总结"></a>异常总结</h2><h3 id="异常的作用"><a href="#异常的作用" class="headerlink" title="异常的作用"></a>异常的作用</h3><p>对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123; </span><br><span class="line">    /** try */</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span></span>( )&#123;</span><br><span class="line">    /** catch */</span><br><span class="line">&#125; finally&#123;</span><br><span class="line">    /** finally */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这种结构非常熟悉，使用频率极高。<br><a id="more"></a></p>
+        <h2 id="异常总结"><a href="#异常总结" class="headerlink" title="异常总结"></a>异常总结</h2><h3 id="异常的作用"><a href="#异常的作用" class="headerlink" title="异常的作用"></a>异常的作用</h3><p>对于程序运行过程中的可能出现异常情况，java语言使用一种称为异常处理的错误捕捉机制进行处理。相信大家对<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123; </span><br><span class="line">    /** try */</span><br><span class="line">&#125;<span class="function"><span class="title">catch</span></span>( )&#123;</span><br><span class="line">    /** catch */</span><br><span class="line">&#125; finally&#123;</span><br><span class="line">    /** finally */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种结构非常熟悉，使用频率极高。</p>
 <h3 id="异常的类之间的关系"><a href="#异常的类之间的关系" class="headerlink" title="异常的类之间的关系"></a>异常的类之间的关系</h3><p>Error类和Exception都继承自Throwable类，如果内置类不满足需求，或者想要自己定义规范类，用户可以自己定义异常类<br>下图是java异常类层次结构图<br><img src="/ExceptionImages/ClassifyException.jpg" alt="异常的分类"></p>
 <h3 id="异常类的说明"><a href="#异常类的说明" class="headerlink" title="异常类的说明"></a>异常类的说明</h3><p>可以清楚的看出，异常的分类的结构：Error类和Exception都继承自<strong>Throwable</strong>。<br><strong>Error</strong>类实现了Java自定义的异常，不受用户控制，描述java运行时系统的内部错误和资源耗尽错误。主要表示JVM的异常。<br><strong>Exception</strong>这个类可以分为：<strong>RuntimaException</strong>，以及其他异常。有程序错误到时的异常为RuntimeException；像I/O错误这类的异常属于其他异常。<br>常见的<strong>RuntimeException</strong>：<br>IndexOutOfBoundsException（下标越界异常）<br>NullPointerException（空指针异常）<br>NumberFormatException（String转换为指定的数字类型出错）<br>ArithmeticException（算法运算异常）<br>ArrayStoreException（向数组中存放于声明类型不兼容的对象）<br>SecurityException（安全异常）<br><strong>IOException（其他异常）</strong>：<br>FileNotFoundException(文件没找到异常)<br>IOException（操作流和输入输出流异常）<br>EOFException（文件读取结束异常）</p>
 <h3 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h3><p><strong>unchecked exception(非必检异常)</strong>：包括(RuntimeException)和派生与Error的异常。运行时异常，不要求必须捕获处理，由用户自己定义。<br><strong>checked exception(必检异常)</strong>：非运行时异常，java编译器强制用户必须处理的异常，比如IOException和SQLException，不处理则编译都不会通过。</p>
@@ -444,23 +444,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">finall</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">变量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java内置模块</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,11 +456,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+                <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -493,6 +485,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
