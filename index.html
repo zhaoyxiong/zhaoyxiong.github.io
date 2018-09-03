@@ -164,6 +164,310 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring-Boot-企业级开发之-Spring-Batch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Batch/">Spring Boot 企业级开发之 Spring Batch</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Batch/" class="archive-article-date">
+  	<time datetime="2018-09-03T15:05:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring-Batch-批处理"><a href="#Spring-Batch-批处理" class="headerlink" title="Spring Batch 批处理"></a>Spring Batch 批处理</h4><p>用来处理大量数据操作的框架，主要用来读取大量数据，然后处理后输出成指定的格式。</p>
+<h4 id="Spring-Batch-的主要组成"><a href="#Spring-Batch-的主要组成" class="headerlink" title="Spring Batch 的主要组成"></a>Spring Batch 的主要组成</h4><p><strong>JobRepository</strong> 用来注册Job的组成<br><strong>JobLauncher</strong> 启动Job<br><strong>Job</strong> 实际执行的任务<br><strong>Step</strong> ItemReader、ItemProcessor和OtemWrter<br><strong>ItemReader</strong> 读取数据的接口<br><strong>ItemProcessor</strong> 梳理数据的接口<br><strong>ItemWriter</strong> 输出数据的接口<br>以上的组成只需要注册成Spring的Bean即可使用，开启批处理需要使用@EnableBatchProcessing<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableBatchProcessing</span><br><span class="line">public class BatchConfig&#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public JobRepository jobRepository(DataSource dataSource, PlatFormTransactionManager transactionManager) throws Exception&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">return</span> jobRepositoryFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public SimpleJobLauncher jobLauncher(DataSource dataSource, PlatFormTransactionManager transactionManager) throws Exception&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">return</span> jobLauncher;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Job importJob(JobBuilderFactroy <span class="built_in">jobs</span>, Step sl)&#123;</span><br><span class="line">        <span class="built_in">return</span> jobs.get(<span class="string">"importJob"</span>)</span><br><span class="line">            .incrementer(new RunIdIncrementer())</span><br><span class="line">            .flow(sl)</span><br><span class="line">            .end()</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader&lt;Person&gt; reader, ItemWriter&lt;Person&gt; writer, ItemProcessor&lt;Person,Person&gt; processor)&#123;</span><br><span class="line">        <span class="built_in">return</span> stepBuilderFactory</span><br><span class="line">            .get(<span class="string">"step1"</span>)</span><br><span class="line">            ...</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    //此三个都可以直接<span class="built_in">return</span></span><br><span class="line">    @Bean (ItemReader)</span><br><span class="line">    @Bean (ItemWriter)</span><br><span class="line">    @Bean (ItemProcessor)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Job监听"><a href="#Job监听" class="headerlink" title="Job监听"></a>Job监听</h4><p>若需要监听Job的执行，则需要定义一个类实现JobExecutionListener，并在Bean中绑定监视器<br>定义如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class MyJobListener implements JobExecutionListener&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void beforeJob(JobExecution jobExecution)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void afterJob(JobExecution jobExecution)&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>并将其绑定到之前的Bean中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@Bean</span><br><span class="line">public Job importJob(JobBuilderFactroy <span class="built_in">jobs</span>, Step sl)&#123;</span><br><span class="line">    <span class="built_in">return</span> jobs.get(<span class="string">"importJob"</span>)</span><br><span class="line">        .incrementer(new RunIdIncrementer())</span><br><span class="line">        .flow(sl)</span><br><span class="line">        .end()</span><br><span class="line">        .listener(csvJobListener())//绑定</span><br><span class="line">        .build();</span><br><span class="line">&#125;</span><br><span class="line">//绑定</span><br><span class="line">@Bean</span><br><span class="line">public MyJobListener <span class="function"><span class="title">myJobListener</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> new MyJobListener();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h4><p>Spring Batch 为我们提供大量的ItemReader的实现，读取不同的数据来源。</p>
+<h4 id="数据处理和校验"><a href="#数据处理和校验" class="headerlink" title="数据处理和校验"></a>数据处理和校验</h4><p>都通过ItemProcessor来实现<br><strong>1）数据处理</strong><br>数据处理只需要实现ItemProcessor接口即可，重写process()方法。参数是从ItemReader读取的数据，返回的数据给ItemWriter。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MyItemProcessor implements ItemProcessor&lt;Person,Person&gt;&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public Person process(Person person)&#123;</span><br><span class="line">        String name = person.getName().toUpperCase();</span><br><span class="line">        person.setName(name);</span><br><span class="line">        <span class="built_in">return</span> person;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2）数据校验</strong><br>JSR-303(主要实现有hibernate-validator)的注解，来校验ItemReader的数据。<br>让偶们的ItemProcessor实现ValidatingItemProcessor<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class MyItemProcessor extends ValidatingItemProcessor&lt;Person&gt;&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Person process(Person item) throws ValidationException&#123;</span><br><span class="line">        super.process(item);</span><br><span class="line">        <span class="built_in">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>定义校验器，实现Validator接口来自于Spring，使用JSR-303的Validator来校验：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class MyBeanValidator&lt;T&gt; implements Validator&lt;T&gt;, InitializingBean&#123;</span><br><span class="line">    private javax.validation.Validator validator;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后在定义MyItemProcessor 时将MyBeanValidator定义进去：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean (ItemProcessor)</span><br><span class="line">public ItemProcessor&lt;Person, Person&gt; <span class="function"><span class="title">processor</span></span>()&#123;</span><br><span class="line">    MyItemProcessor processor = new MyItemProcessor();</span><br><span class="line">    processor.setValidator(myBeanValidator()); //添加定义</span><br><span class="line">    <span class="built_in">return</span> processor;</span><br><span class="line">&#125;</span><br><span class="line">@Bean </span><br><span class="line">public Validator&lt;Person&gt; <span class="function"><span class="title">myBeanValidator</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> new MyBeanValidator&lt;Person&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="数据输出"><a href="#数据输出" class="headerlink" title="数据输出"></a>数据输出</h4><p>Spring Batch提供了大量的ItemWriter输出</p>
+<h4 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h4><p>通过JobLauncher的run实现<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Service</span><br><span class="line">public class ScheduledTaskService&#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    JobLauncher jobLauncher;</span><br><span class="line"></span><br><span class="line">    @Autowired </span><br><span class="line">    Job importJob;</span><br><span class="line"></span><br><span class="line">    public JobParameters jobParameters;</span><br><span class="line">    </span><br><span class="line">    @Scheduled (fixedRate = 5000)</span><br><span class="line">    public void execute() throws Exception&#123;</span><br><span class="line">        jobParameters = new JobParametersBuilder()</span><br><span class="line">            .addLong(<span class="string">"time"</span>, System.currentTimeMillus()).toJobParameters();</span><br><span class="line">        jobLauncher.run(importJob,jobParameters);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="参数后置绑定"><a href="#参数后置绑定" class="headerlink" title="参数后置绑定"></a>参数后置绑定</h4><p>ItemReader和ItemWriter的Bean定义时，参数已经硬编码在Bean的初始化中。<br>所以需要添加一个后置编码来对其进行修改：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">待定。。。</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Batch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Batch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Boot-企业级开发之-Spring-Security" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Security/">Spring Boot 企业级开发之 Spring Security</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Security/" class="archive-article-date">
+  	<time datetime="2018-09-03T14:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring-Security-安全控制"><a href="#Spring-Security-安全控制" class="headerlink" title="Spring Security 安全控制"></a>Spring Security 安全控制</h4><p>专门针对基于Spring项目的安全框架，充分利用了AOP和依赖注入来实现。</p>
+<h4 id="Spring-Security-的配置"><a href="#Spring-Security-的配置" class="headerlink" title="Spring Security 的配置"></a>Spring Security 的配置</h4><p>1）DelegatingFilterProxy</p>
+<p>2）配置</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring Security</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/03/Spring-Boot-企业级开发之-Spring-Security/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据访问的绝对霸主-Hibernate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/数据访问的绝对霸主-Hibernate/">数据访问的绝对霸主-Hibernate</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/03/数据访问的绝对霸主-Hibernate/" class="archive-article-date">
+  	<time datetime="2018-09-03T00:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/03/数据访问的绝对霸主-Hibernate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-设计模式分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/21/设计模式分类/">设计模式分类</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/21/设计模式分类/" class="archive-article-date">
+  	<time datetime="2018-08-21T10:08:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="设计模式的简单分类"><a href="#设计模式的简单分类" class="headerlink" title="设计模式的简单分类"></a>设计模式的简单分类</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/21/设计模式分类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-进程同步以及异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -627,339 +931,6 @@
 
 
   
-    <article id="post-数据结构之查找算法分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/19/数据结构之查找算法分类/">数据结构之查找算法分类</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/19/数据结构之查找算法分类/" class="archive-article-date">
-  	<time datetime="2018-02-19T03:39:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="查找算法的分类"><a href="#查找算法的分类" class="headerlink" title="查找算法的分类"></a>查找算法的分类</h3><p>查找算法是数据的主要操作，查找算法的优良自然决定了程序读取数据的时间复杂度，所以好的查找算法可以很大程度上决定算法的优劣。<br>查找算法分为<strong>比较式查找</strong>和<strong>计算式查找算法</strong>。<br>
-        
-          <a class="article-more-a" href="/2018/02/19/数据结构之查找算法分类/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/19/数据结构之查找算法分类/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构之树与森林、二叉树的关系" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/17/数据结构之树与森林、二叉树的关系/">数据结构之树与森林、二叉树的关系</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/17/数据结构之树与森林、二叉树的关系/" class="archive-article-date">
-  	<time datetime="2018-01-17T03:13:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="树与二叉树"><a href="#树与二叉树" class="headerlink" title="树与二叉树"></a>树与二叉树</h2><h3 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h3><pre><code>1.双亲存储法；
-2.孩子存储法；
-3.孩子兄弟存储法；
-</code></pre>
-        
-          <a class="article-more-a" href="/2018/01/17/数据结构之树与森林、二叉树的关系/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/17/数据结构之树与森林、二叉树的关系/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构之树与二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/16/数据结构之树与二叉树/">数据结构之树与二叉树</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/16/数据结构之树与二叉树/" class="archive-article-date">
-  	<time datetime="2018-01-16T03:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h2><h3 id="为什么使用线索二叉树"><a href="#为什么使用线索二叉树" class="headerlink" title="为什么使用线索二叉树"></a>为什么使用线索二叉树</h3><p>二叉树，在以一般二叉树作为存储结构时，只能直接得到父子节点，而不能直接获取其前驱和后继，所以，有两种办法解决这个问题：<br>    1.遍历获取，（不过可以知道较为麻烦）；<br>    2.修改节点：[LChild, Ltag, data, Rtag, RChild],修改为此种结构，还可以充分利用二叉链表的空链域;<br>
-        
-          <a class="article-more-a" href="/2018/01/16/数据结构之树与二叉树/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二叉树</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/16/数据结构之树与二叉树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java-se-类加载时块顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/06/Java-se-类加载时块顺序/">Java-se-类加载时块顺序</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/06/Java-se-类加载时块顺序/" class="archive-article-date">
-  	<time datetime="2017-10-06T04:30:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>类加载时，有类的加载优先级：举例说明<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    static int i = 0;</span><br><span class="line">    int z; </span><br><span class="line">    public <span class="function"><span class="title">A</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"i is "</span> + i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class B extends A&#123;</span><br><span class="line">    static int j = 1;</span><br><span class="line">    public <span class="function"><span class="title">B</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"j is "</span> + j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">static void main(String[] args)&#123;</span><br><span class="line">    new B();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>借此实例说明代码的加载顺序：</p>
-<h4 id="1、静态代码块"><a href="#1、静态代码块" class="headerlink" title="1、静态代码块"></a>1、静态代码块</h4><p>静态代码块的优先级时最高的，类会将所有的class和static加载在方法区中，所以当调用父类的super()时，会先加载父类的静态代码块，然后是子类的静态代码块；</p>
-<h4 id="2、main方法块"><a href="#2、main方法块" class="headerlink" title="2、main方法块"></a>2、main方法块</h4><p>由于此类中使用的main方法，所以跳过main的加载（不会有main）；</p>
-<h4 id="3、内存分配，全局变量赋值"><a href="#3、内存分配，全局变量赋值" class="headerlink" title="3、内存分配，全局变量赋值"></a>3、内存分配，全局变量赋值</h4><p>对于非static的变量，在类加载时，会将对象放入堆结构中，在对结构中为全局变量赋默认值；</p>
-<h4 id="4、构造代码块"><a href="#4、构造代码块" class="headerlink" title="4、构造代码块"></a>4、构造代码块</h4><p>初始化默认值执行结束之后，由于构造代码块在构造方法之前执行，所以先输出父类的i is 0；</p>
-<h4 id="5、构造方法"><a href="#5、构造方法" class="headerlink" title="5、构造方法"></a>5、构造方法</h4><p>构造方法块执行之后，执行构造方法，为对象的变量赋值，所以先是父类的构造方法；</p>
-<h4 id="6、子类的构造方法块和构造方法"><a href="#6、子类的构造方法块和构造方法" class="headerlink" title="6、子类的构造方法块和构造方法"></a>6、子类的构造方法块和构造方法</h4><p>同4、5中父类的加载，子类也是如此加载方式加载；</p>
-<p>至此，new语句才算完全执行。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Javase</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java内置模块</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/06/Java-se-类加载时块顺序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1065,11 +1036,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color3">变量</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1077,7 +1044,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring Batch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,6 +1061,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1113,11 +1096,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
