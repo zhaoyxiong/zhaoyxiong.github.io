@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>进程同步以及异步 | 杂货铺</title>
+  <title>异步消息 AMQP 实战 Spring Boot 企业级开发 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="进程同步以及异步">
-<meta property="og:url" content="http://yoursite.com/进程线程/进程同步以及异步.html">
+  <meta name="description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
+<meta name="keywords" content="Spring Boot,异步消息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步消息 AMQP 实战 Spring Boot 企业级开发">
+<meta property="og:url" content="http://yoursite.com/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/index.html">
 <meta property="og:site_name" content="杂货铺">
+<meta property="og:description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-14T15:02:18.812Z">
+<meta property="og:updated_time" content="2018-09-04T08:53:00.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程同步以及异步">
+<meta name="twitter:title" content="异步消息 AMQP 实战 Spring Boot 企业级开发">
+<meta name="twitter:description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -163,27 +167,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-异步消息-AMQP-实战-Spring-Boot-企业级开发" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      进程同步以及异步
+      异步消息 AMQP 实战 Spring Boot 企业级开发
     </h1>
   
 
         
-        <a href="/进程线程/进程同步以及异步.html" class="archive-article-date">
-  	<time datetime="2018-08-14T15:02:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
+        <a href="/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-07-26T08:14:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h4 id="AMQP实战"><a href="#AMQP实战" class="headerlink" title="AMQP实战"></a>AMQP实战</h4><p><strong>1、新建Spring Boot项目</strong><br>依赖无<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
+<p>Spring Boot默认主机为localhost，端口为5672。</p>
+<p><strong>2、发送消息及目的地定义</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Ch934Application implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    //注入Spring Boot配置好的JmsTemplate的Bean</span><br><span class="line">    @Autowired</span><br><span class="line">    RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        SpringApplciation.run(Ch934Applciaton.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //定义队列，名称为my-queue</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue <span class="function"><span class="title">wiselyQueue</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new Queue(<span class="string">"my-queue"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //通过send方法向目的地发送消息对相关</span><br><span class="line">    @Override</span><br><span class="line">    public void run(String ... args) throws Exception&#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">"my-queue"</span>, <span class="string">"来自Rabbit的问候"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、消息监听</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class Receiver&#123;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queue = <span class="string">"my-queue"</span>)</span><br><span class="line">    public void receiveMessage(String message)&#123;</span><br><span class="line">        System.out.println(<span class="string">"接收到：&lt;"</span> + message + <span class="string">"&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4、运行</strong></p>
+<p>在RabbitQ的容器管理界面可以看到信息传递。</p>
+
       
 
       
@@ -191,6 +201,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步消息</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -241,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/进程线程/进程同步以及异步.html" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -253,6 +278,25 @@
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2018/08/14/进程同步以及异步/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          进程同步以及异步
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/15/异步消息-JMS-实战-Spring-Boot-企业级开发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">异步消息 JMS 实战 Spring Boot 企业级开发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -274,7 +318,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#AMQP实战"><span class="toc-number">1.</span> <span class="toc-text">AMQP实战</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -316,7 +360,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
@@ -386,11 +430,99 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Javase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java内置模块</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">finall</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Batch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Spring Integration</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
             
             <div class="clearfix"></div>

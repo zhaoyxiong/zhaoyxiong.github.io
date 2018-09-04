@@ -164,42 +164,42 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Spring-Batch-实战-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-系统集成-Spring-Integration" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/04/Spring-Batch-实战-Spring-Boot-企业级开发/">Spring Batch 实战 Spring Boot 企业级开发</a>
+      <a class="article-title" href="/2018/09/04/系统集成-Spring-Integration/">系统集成 Spring Integration</a>
     </h1>
   
 
         
-        <a href="/2018/09/04/Spring-Batch-实战-Spring-Boot-企业级开发/" class="archive-article-date">
-  	<time datetime="2018-09-04T00:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-04</time>
+        <a href="/2018/09/04/系统集成-Spring-Integration/" class="archive-article-date">
+  	<time datetime="2018-09-04T08:53:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Spring-Boot-的-Spring-Batch支持"><a href="#Spring-Boot-的-Spring-Batch支持" class="headerlink" title="Spring Boot 的 Spring Batch支持"></a>Spring Boot 的 Spring Batch支持</h4><p>源码位于<strong>org.springframework.boot.autoconfigure.batch</strong>下。<br>Spring Boot为我们自动初始化了Spring Batch存储批处理记录的数据库，且当程序启动时会自动执行定义的Job的Bean。<br>Spring Boot的如下定制<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">spring.batch.job.names = job1, job2 <span class="comment">#启动时执行Job，默认全部执行</span></span><br><span class="line">spring.batch.job.enables = <span class="literal">true</span> <span class="comment">#是否自动执行Bean</span></span><br><span class="line">spring.batch.initializer.enabled = <span class="literal">true</span> <span class="comment">#是否初始化Spring Batch</span></span><br><span class="line">spring.batch.schema = </span><br><span class="line">spring.batch.table-prefix = <span class="comment"># 设置Spring Batch的数据库表的选项</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="实战操作"><a href="#实战操作" class="headerlink" title="实战操作"></a>实战操作</h4><p>使用Spring Batch将csv文件中的数据使用JDBC批处理方式插入数据库<br><strong>1、新建Spring Boot项目</strong><br>依赖为JDBC、Batch、Web。<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
-<p><strong>Oracle驱动</strong>，Spring Batch会自动加载 hsqldb 驱动，所以需要主动去除依赖：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-batch&lt;/artifactId&gt;</span><br><span class="line">    &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;org.hsqldb&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;hsqldb&lt;/artifactId&gt;</span><br><span class="line">        &lt;/exclusion&gt;</span><br><span class="line">    &lt;/exclusions&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.oracle&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;11.2.0.2.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">//添加hibernate依赖，作为数据校验使用</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.hibernate&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hibernate-validator&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p><strong>测试csv数据</strong>，位于src/main/resources/people.csv<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">某某，11，汉族，合肥</span><br><span class="line">某某，11，汉族，合肥</span><br><span class="line">某某，11，汉族，合肥</span><br><span class="line">某某，11，汉族，合肥</span><br><span class="line">某某，11，汉族，合肥</span><br></pre></td></tr></table></figure></p>
-<p><strong>数据表定义</strong>，位于src/main/resources/schema.sql<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">create table PERSON&#123;</span><br><span class="line">    id NUMBER not null primary key,</span><br><span class="line">    name VARCHAR2(20),</span><br><span class="line">    age NUMBER,</span><br><span class="line">    nation VARCHAR2(20),</span><br><span class="line">    address VARCHAR2(20)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>2、领域模型类</strong><br>Person class{<br>    @Size(max = 4, min = 2)<br>    private String name ;<br>    …<br>}</p>
-<p><strong>3、数据处理及校验</strong><br>1）处理：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class CsvItemProcessor extends ValidatingItemProcessor&lt;Person&gt;&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Person process(Person item) throws ValidationException&#123;</span><br><span class="line">        super.process(item);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(item.getNation().equals(<span class="string">"汉族"</span>))&#123;</span><br><span class="line">            item.setNation(<span class="string">"01"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            item.setNation(<span class="string">"02"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>2）校验<br>使用JSR-303的Validator接口实现校验<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class MyBeanValidator&lt;T&gt; implements Validator&lt;T&gt;, InitializingBean&#123;</span><br><span class="line">    </span><br><span class="line">    private javax.validation.Validator validator;</span><br><span class="line">    </span><br><span class="line">    @Override</span><br><span class="line">    public void afterPropertiesSet() thorws Exception&#123;</span><br><span class="line">        ValidatorFactory validatorFactory = new Validation.buildDefaultValidatorFactory();</span><br><span class="line">        validator = validatorFactory.usingContext().getValidator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void validate(T value) throws ValidationException&#123;</span><br><span class="line">        Set&lt;ConstraintViolation&lt;T&gt;&gt; constraintViolations = validator.validate(value);</span><br><span class="line">        <span class="keyword">if</span>(constraintViolations.size() &gt; 0)&#123;</span><br><span class="line">            StringBuilder message = new StringBuilder();</span><br><span class="line">            <span class="keyword">for</span>(ConstraintViolation&lt;T&gt; constraintViolation : constraintViolations)&#123;</span><br><span class="line">                message.append(constraintViolation.getMessage() + <span class="string">"\n"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            throw new ValodationException(message.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>4、Job监听</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class CsvJobListener implements JobExecutionListener&#123;</span><br><span class="line">    Long startTime;</span><br><span class="line">    Long endTime;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void beforeJob(JobExecution jobExecution)&#123;</span><br><span class="line">        startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"任务开始"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void afterJob(JobExecution jobExecution)&#123;</span><br><span class="line">        endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"耗时 "</span> + (endTime - startTime) + <span class="string">" s"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>5、配置</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableBatchProcessing</span><br><span class="line">public class CsvBatchConfig&#123;</span><br><span class="line">    @Bean</span><br><span class="line">    public JobRepository jobRepository(DataSource dataSource, PlatFormTransactionManager transactionManager) throws Exception&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">return</span> jobRepositoryFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public SimpleJobLauncher jobLauncher(DataSource dataSource, PlatFormTransactionManager transactionManager) throws Exception&#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">return</span> jobLauncher;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Job importJob(JobBuilderFactroy <span class="built_in">jobs</span>, Step sl)&#123;</span><br><span class="line">        <span class="built_in">return</span> jobs.get(<span class="string">"importJob"</span>)</span><br><span class="line">            .incrementer(new RunIdIncrementer())</span><br><span class="line">            .flow(sl)</span><br><span class="line">            .end()</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Step step1(StepBuilderFactory stepBuilderFactory, ItemReader&lt;Person&gt; reader, ItemWriter&lt;Person&gt; writer, ItemProcessor&lt;Person,Person&gt; processor)&#123;</span><br><span class="line">        <span class="built_in">return</span> stepBuilderFactory</span><br><span class="line">            .get(<span class="string">"step1"</span>)</span><br><span class="line">            ...</span><br><span class="line">            .build();</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    //此三个都可以直接<span class="built_in">return</span></span><br><span class="line">    @Bean (ItemReader)</span><br><span class="line">    @Bean (ItemWriter)</span><br><span class="line">    @Bean (ItemProcessor)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>6、运行</strong><br>图略</p>
-<p><strong>7、手动触发任务</strong></p>
-<p>注释掉配置类的@Configuration<br>新建一个类，TriggerBatchConfig，内容与CsvBatchConfig完全一致，除了ItemReader：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">@StepScope</span><br><span class="line">public ItemReader&lt;Person&gt; reader(@Value(<span class="string">"#&#123;jobParameters['input.file.name']&#125;"</span>) String pathToFile) throws Exception&#123;</span><br><span class="line">    FlatFileItemReader&lt;Person&gt; reader = new FlatFormItemReader&lt;Person&gt;();</span><br><span class="line">    reader.setResource(new ClassPathResource(pathToFile));</span><br><span class="line">    reader.setLineMapper(new DefaultLineMapper&lt;Person&gt;()&#123;&#123;</span><br><span class="line">        setLineTokenizer(new <span class="function"><span class="title">DelimitedLineTokenizer</span></span>()&#123;&#123;</span><br><span class="line">            setNames(new String[]&#123; <span class="string">"name"</span>, <span class="string">"age"</span>, <span class="string">"nation"</span>, <span class="string">"address"</span>&#125;);</span><br><span class="line">        &#125;&#125;);</span><br><span class="line">        setFieldSetMapper(new BeanWrapperFieldSetMapper&lt;Person&gt;()&#123;&#123;</span><br><span class="line">            setTargetType(Person.class);</span><br><span class="line">        &#125;&#125;);</span><br><span class="line">    &#125;&#125;);</span><br><span class="line">    <span class="built_in">return</span> reader;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>还需要关闭自动执行的Job配置，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.batch.job.enabled=<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>8、访问</strong><br><a href="http://localhost:8080/imp?fileName=people" target="_blank" rel="noopener">http://localhost:8080/imp?fileName=people</a></p>
+        <h4 id="Spring-Integration"><a href="#Spring-Integration" class="headerlink" title="Spring Integration"></a>Spring Integration</h4><p>提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。<br>Spring Integration主要由Message、Channel和Message EndPoint。</p>
+<p><strong>Message:</strong><br>用来在不同部分之间传递的参数，两部分组成：<strong>消息体</strong>（payload）、<strong>消息头</strong>（header）。</p>
+<p><strong>消息体：</strong>可以是任何数据类型(XML、JSON，Java对象等)；<br><strong>消息头：</strong>表示的元数据就是解释消息体的内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Message&lt;T&gt;&#123;</span><br><span class="line">    T getPayload();</span><br><span class="line">    MessageHeaders getHeaders();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Channel(通道)</strong><br>消息发送者发送消息到通道(Channel)，消息接收者从通道(Channel)接收消息。</p>
+<p><strong>1、顶级接口</strong><br>1）MessageChannel是Spring Integration消息通路的顶级接口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface MessageChannel&#123;</span><br><span class="line">    public static final long INDEFINITE_TIMEOUT = -1;</span><br><span class="line">    boolean send(Message&lt;?&gt; message);</span><br><span class="line">    boolean send(Message&lt;?&gt; message, long timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>MessageChannel两大子接口，分别为PollableChannel(可轮询)和SubscribableChannel(可订阅)。我们所有的消息通道类都是实现这两个接口。</p>
+<p>2）PollableChannel<br>具备轮询获得消息的能力，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface PollableChannel&#123;</span><br><span class="line">    Message&lt;?&gt; receive();</span><br><span class="line">    Message&lt;?&gt; receive(long timeout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3）SubscribableChannel<br>SubscribableChannel发送消息给MessageHanlder的订阅者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface SubscribableChannel extends MessageChannel&#123;</span><br><span class="line">    boolean subscribe(MessageHandler handler);</span><br><span class="line">    boolean unsubscribe(MessageHandler handler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、常用消息通道</strong><br>1）PublishSubscribeChannel<br>PublishSubscribeChannel允许广播消息给所有订阅者，配置方式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public PublishSubscribeChannel <span class="function"><span class="title">publishSubscribeChannel</span></span>()&#123;</span><br><span class="line">    PublishSubscribeChannel channel = new PublishSubscribeChannel();</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2）QueueChannel允许消息接受者轮询接收消息，使用queue接收<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public QueueChannel <span class="function"><span class="title">queueChannel</span></span>()&#123;</span><br><span class="line">    QueueChannel channel = new QueueChannel(10);</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3）PriorityChannel<br>PriorityChannel可按优先级将数据存储到对，依据于消息的消息头priority属性<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public PriorityChannel <span class="function"><span class="title">priorityChannel</span></span>()&#123;</span><br><span class="line">    PriorityChannel channel = new PriorityChannel(10);</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4）RendezvousChannel<br>RendzvousChannel确保每个接收者都接受到以后再发送消息。配置如下，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public RendezvousChannel <span class="function"><span class="title">rendezvousChannel</span></span>()&#123;</span><br><span class="line">    RendezvousChannel channel = new RendezvousChannel();</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>5）DirectChannel<br>DirectChannel是Spring Integration默认的消息通道，允许将消息发送给为一个订阅者，然后阻碍发送直到消息被接收，配置方式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public DirectChannel <span class="function"><span class="title">directChannel</span></span>()&#123;</span><br><span class="line">    DirectChannel channel = new DirectChannel();</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6）ExecutorChannel<br>ExecutorChannel可绑定一个多线程的task executor，配置方式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public ExecutorChannel <span class="function"><span class="title">executorChannel</span></span>()&#123;</span><br><span class="line">    ExecutorChannel channel = new ExecutorChannel(executor());</span><br><span class="line">    <span class="built_in">return</span> channel;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Bean</span><br><span class="line">public Executor <span class="function"><span class="title">executor</span></span>()&#123;</span><br><span class="line">    ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();</span><br><span class="line">    taskExecutor.setCorePoolSize(5);</span><br><span class="line">    taskExecutor.setMaxPoolSize(10);</span><br><span class="line">    taskExecutor.setQueueCapacity();</span><br><span class="line">    taskExecutor.initialize();</span><br><span class="line">    <span class="built_in">return</span> taskExecutor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、通道拦截器</strong><br>ChannelInterceptor，拦截发送和接收的操作。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface ChannelInterceptor&#123;</span><br><span class="line">    Message&lt;?&gt; preSend(Message&lt;?&gt; message, MessageChannel channel);</span><br><span class="line">    void postSend(Message&lt;?&gt; message, MessageChannel channel, boolean sent);</span><br><span class="line">    void afterSendCompletion(Message&lt;?&gt; message, MessageChannel channel, boolean sent, Exception ex);</span><br><span class="line">    boolean preReceive(MessageChannel channel);</span><br><span class="line">    Message&lt;?&gt; postReceive(Message&lt;?&gt; message, MessageChannel channel);</span><br><span class="line">    void afterReceiveCompletion(Message&lt;?&gt; message, MessageChannel channel, Exception ex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过下面的代码给所有channel增加拦截器；<br>channel.addInterceptor(someInterceptor);</p>
 
       
 
@@ -217,7 +217,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Batch</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Spring Integration</a>
         		</li>
       		
 		</ul>
@@ -227,7 +227,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/04/Spring-Batch-实战-Spring-Boot-企业级开发/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/09/04/系统集成-Spring-Integration/">展开全文 >></a>
         </p>
       
 
@@ -257,6 +257,697 @@
 
 
   
+    <article id="post-Spring-Security-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/Spring-Security-Spring-Boot-企业级开发/">Spring Security Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/03/Spring-Security-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-09-03T14:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring-Security-安全控制"><a href="#Spring-Security-安全控制" class="headerlink" title="Spring Security 安全控制"></a>Spring Security 安全控制</h4><p>专门针对基于Spring项目的安全框架，充分利用了AOP和依赖注入来实现。</p>
+<h4 id="Spring-Security-的配置"><a href="#Spring-Security-的配置" class="headerlink" title="Spring Security 的配置"></a>Spring Security 的配置</h4><p>1）DelegatingFilterProxy</p>
+<p>2）配置</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spring Security</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/03/Spring-Security-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据访问的绝对霸主-Hibernate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/03/数据访问的绝对霸主-Hibernate/">数据访问的绝对霸主-Hibernate</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/03/数据访问的绝对霸主-Hibernate/" class="archive-article-date">
+  	<time datetime="2018-09-03T00:26:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/03/数据访问的绝对霸主-Hibernate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-设计模式分类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/21/设计模式分类/">设计模式分类</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/21/设计模式分类/" class="archive-article-date">
+  	<time datetime="2018-08-21T10:08:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="设计模式的简单分类"><a href="#设计模式的简单分类" class="headerlink" title="设计模式的简单分类"></a>设计模式的简单分类</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/21/设计模式分类/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-进程同步以及异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/14/进程同步以及异步/">进程同步以及异步</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/14/进程同步以及异步/" class="archive-article-date">
+  	<time datetime="2018-08-14T15:02:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/14/进程同步以及异步/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-异步消息-AMQP-实战-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/">异步消息 AMQP 实战 Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-07-26T08:14:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="AMQP实战"><a href="#AMQP实战" class="headerlink" title="AMQP实战"></a>AMQP实战</h4><p><strong>1、新建Spring Boot项目</strong><br>依赖无<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
+<p>Spring Boot默认主机为localhost，端口为5672。</p>
+<p><strong>2、发送消息及目的地定义</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Ch934Application implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    //注入Spring Boot配置好的JmsTemplate的Bean</span><br><span class="line">    @Autowired</span><br><span class="line">    RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        SpringApplciation.run(Ch934Applciaton.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //定义队列，名称为my-queue</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue <span class="function"><span class="title">wiselyQueue</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new Queue(<span class="string">"my-queue"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //通过send方法向目的地发送消息对相关</span><br><span class="line">    @Override</span><br><span class="line">    public void run(String ... args) throws Exception&#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">"my-queue"</span>, <span class="string">"来自Rabbit的问候"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、消息监听</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class Receiver&#123;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queue = <span class="string">"my-queue"</span>)</span><br><span class="line">    public void receiveMessage(String message)&#123;</span><br><span class="line">        System.out.println(<span class="string">"接收到：&lt;"</span> + message + <span class="string">"&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4、运行</strong></p>
+<p>在RabbitQ的容器管理界面可以看到信息传递。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步消息</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-异步消息-JMS-实战-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/15/异步消息-JMS-实战-Spring-Boot-企业级开发/">异步消息 JMS 实战 Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/15/异步消息-JMS-实战-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-07-15T07:17:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="JMS实战（Java-Message-Service"><a href="#JMS实战（Java-Message-Service" class="headerlink" title="JMS实战（Java Message Service)"></a>JMS实战（Java Message Service)</h4><p><strong>1、内嵌ActiveMQ</strong>，依赖加入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.activemq&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activemq-broker&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2、新建Spring Boot项目</strong><br>依赖无<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
+<p>Spring Boot提供了JMS(spring-boot-starter-hornetq)，但是默认为HornetQ，此次实例使用ActiveMQ，添加spring-jms和activemq-client的依赖。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-jms&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.apache.activemq&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activemq-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>配置消息代理的地址<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.activemq.borker-url=tcp://localhost:61616</span><br></pre></td></tr></table></figure></p>
+<p><strong>3、消息定义</strong><br>发送的消息需MessageCreator接口，重写createMessage方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Msg implements MessageCreator&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Message createrMessage(Session session) throws JMSException&#123;</span><br><span class="line">        <span class="built_in">return</span> session.createTextMessage(<span class="string">"测试消息"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>4、消息发送即目的地</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Ch934Application implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    //注入Spring Boot配置好的JmsTemplate的Bean</span><br><span class="line">    @Autowired</span><br><span class="line">    JmsTemplate jmsTemplate;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        SpringApplciation.run(Ch934Applciaton.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //通过send方法向目的地发送消息对相关</span><br><span class="line">    @Override</span><br><span class="line">    public void run(String ... args) throws Exception&#123;</span><br><span class="line">        jmsTemplate.send(<span class="string">"my-destination"</span>, new Msg());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>5、消息监听</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class Receiver&#123;</span><br><span class="line"></span><br><span class="line">    @JmsListener(destination = <span class="string">"my-destination"</span>)</span><br><span class="line">    public void receiveMessage(String message)&#123;</span><br><span class="line">        System.out.println(<span class="string">"接收到：&lt;"</span> + message + <span class="string">"&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>6、运行</strong></p>
+<p>程序会自动向my-destination发送消息，而Receiver类注解了@JmsListener的方法会自动监听my-destination发送的消息。<br>————–<strong>统一容器管理</strong>。</p>
+<p>在ActiveMQ的管理页面也可以看到目的地的相关信息。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步消息</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/15/异步消息-JMS-实战-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-异步消息-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/15/异步消息-Spring-Boot-企业级开发/">异步消息 Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/15/异步消息-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-07-15T02:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="异步消息"><a href="#异步消息" class="headerlink" title="异步消息"></a>异步消息</h4><p>为了系统之间的通信，所谓异步消息就是消息发送者无需等待，甚至无需关心消息是否送到。<br>主要有两种形式的目的地：队列(queue)和主题(topic)。队列用于<strong>点对点式</strong>的消息通信；主题用于<strong>发布/订阅式</strong>的消息通信。<br>
+        
+          <a class="article-more-a" href="/2018/07/15/异步消息-Spring-Boot-企业级开发/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">异步消息</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/15/异步消息-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Batch-实战-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/04/Spring-Batch-实战-Spring-Boot-企业级开发/">Spring Batch 实战 Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/04/Spring-Batch-实战-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-07-04T00:52:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring-Boot-的-Spring-Batch支持"><a href="#Spring-Boot-的-Spring-Batch支持" class="headerlink" title="Spring Boot 的 Spring Batch支持"></a>Spring Boot 的 Spring Batch支持</h4><p>源码位于<strong>org.springframework.boot.autoconfigure.batch</strong>下。<br>
+        
+          <a class="article-more-a" href="/2018/07/04/Spring-Batch-实战-Spring-Boot-企业级开发/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Batch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/04/Spring-Batch-实战-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring-Batch-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/">Spring Batch Spring Boot 企业级开发</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/" class="archive-article-date">
+  	<time datetime="2018-06-30T15:05:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Spring-Batch-批处理"><a href="#Spring-Batch-批处理" class="headerlink" title="Spring Batch 批处理"></a>Spring Batch 批处理</h4><p>用来处理大量数据操作的框架，主要用来读取大量数据，然后处理后输出成指定的格式。<br>
+        
+          <a class="article-more-a" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Batch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -350,11 +1041,99 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Javase</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java内置模块</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">finall</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring Batch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">问题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Spring Integration</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
             
             <div class="clearfix"></div>
