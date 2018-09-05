@@ -534,6 +534,113 @@
 
 
   
+    <article id="post-Spring-Boot-开发部署与测试-目录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/05/Spring-Boot-开发部署与测试-目录/">Spring Boot 开发部署与测试 目录</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/05/Spring-Boot-开发部署与测试-目录/" class="archive-article-date">
+  	<time datetime="2018-08-05T00:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开发热部署"><a href="#开发热部署" class="headerlink" title="开发热部署"></a>开发热部署</h3><h4 id="模板热部署"><a href="#模板热部署" class="headerlink" title="模板热部署"></a>模板热部署</h4><h4 id="Spring-Loaded的热部署"><a href="#Spring-Loaded的热部署" class="headerlink" title="Spring Loaded的热部署"></a>Spring Loaded的热部署</h4><p>JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。</p>
+<h4 id="spring-boot-devtools"><a href="#spring-boot-devtools" class="headerlink" title="spring-boot-devtools"></a>spring-boot-devtools</h4><p>页面和代码的热部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifact&gt;spring-boot-devtools&lt;/artifact&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="常规部署"><a href="#常规部署" class="headerlink" title="常规部署"></a>常规部署</h3><h4 id="Jar形式"><a href="#Jar形式" class="headerlink" title="Jar形式"></a>Jar形式</h4><p>1、打包<br>新建Spring Boot项目是选择打包方式是Jar，则只需要：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure></p>
+<p>2、运行<br>可直接使用命令运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xx.jar</span><br></pre></td></tr></table></figure></p>
+<p>3、注册为Linux的服务<br>Linux下运行的软件通常注册为服务，可以通过命令开启、关闭以及保持开机启动等。<br>需要将spring-boot-maven-plugin 修改为:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-mavne-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;executable&gt;<span class="literal">true</span>&lt;/executable&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">        &lt;/plugin&gt;</span><br><span class="line">    &lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后使用<strong>mvn package</strong>打包。</p>
+<h5 id="主流的注册服务方式有：init-d和systemd："><a href="#主流的注册服务方式有：init-d和systemd：" class="headerlink" title="主流的注册服务方式有：init.d和systemd："></a>主流的注册服务方式有：<strong>init.d</strong>和<strong>systemd</strong>：</h5><p><strong>init.d:</strong><br>CentOS 6.6的init.d注册服务：<br><strong>基于Linux的init.d部署</strong><br>1）注册服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo lin -s /var/apps/ch10-0.0.1-SNAPSHOT.jar /etc/init.d/ch10</span><br></pre></td></tr></table></figure></p>
+<p>2）启动服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ch10 start</span><br></pre></td></tr></table></figure></p>
+<p>3）停止服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ch10 stop</span><br></pre></td></tr></table></figure></p>
+<p>4）服务状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ch10 status</span><br></pre></td></tr></table></figure></p>
+<p>5）开机启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig ch10 on</span><br></pre></td></tr></table></figure></p>
+<p>项目日志在/var/log/ch10.log下，可通过cat或tail查看。</p>
+<p><strong>systemd</strong><br>CentOS7.1的systemd注册服务：<br><strong>基于SentOS的Systemd部署</strong><br>在/etc/systemd/system/目录下新建文件ch10.service，填入如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description = ch10  <span class="comment">#使用时修改</span></span><br><span class="line">After=sysing.target</span><br><span class="line"></span><br><span class="line">[service]</span><br><span class="line">ExecStart= /usr/bin/java -jar /var/apps/ch10-0.0.1SNAPSHOT.jar <span class="comment">#使用时修改</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=nulti-user.target</span><br></pre></td></tr></table></figure></p>
+<p>1）启动服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systectl start ch10</span><br><span class="line">或systemctl start ch0.service</span><br></pre></td></tr></table></figure></p>
+<p>2）停止服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop ch10</span><br><span class="line">或systemctl stop ch10.service</span><br></pre></td></tr></table></figure></p>
+<p>3）服务状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ch10</span><br><span class="line">或systemctl status chq0.service</span><br></pre></td></tr></table></figure></p>
+<p>4）开机启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> ch10</span><br><span class="line">或systemctl <span class="built_in">enable</span> chq0.service</span><br></pre></td></tr></table></figure></p>
+<p>5）项目日志<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">journalctl -u ch10</span><br><span class="line">或journalctl -u ch10.service</span><br></pre></td></tr></table></figure></p>
+<h4 id="war形式"><a href="#war形式" class="headerlink" title="war形式"></a>war形式</h4><p>1、打包war<br>新建Spring Boot项目是选择打包方式是war，则需要：<br>修改打包格式为war<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure></p>
+<p>2、打包为jar，部署用war（完成转换）<br>修改pom.xml<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;jar&lt;/packaging&gt;</span><br></pre></td></tr></table></figure></p>
+<p>修改为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;war&lt;/packaging&gt;</span><br></pre></td></tr></table></figure></p>
+<p>增加依赖覆盖内嵌tomcat</p>
+<p><dependency><br>    <groupid>org.springframework.boot</groupid><br>    <artifactid>spring-boot-starter-tomcat</artifactid><br>    <scope>provided</scope><br></dependency><br>增加ServletInitializer类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ServletInitializer entends SpringBootServletInitializer&#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder application)&#123;</span><br><span class="line">        <span class="built_in">return</span> application.sources(ch10warApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="云部署—–基于Docker部署"><a href="#云部署—–基于Docker部署" class="headerlink" title="云部署—–基于Docker部署"></a>云部署—–基于Docker部署</h3><p>编译自己的Docker镜像，并运行docker内的容器。使用Dockerfile编译自己的镜像</p>
+<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><h4 id="项目目录及文件"><a href="#项目目录及文件" class="headerlink" title="项目目录及文件"></a>项目目录及文件</h4><h4 id="编译镜像"><a href="#编译镜像" class="headerlink" title="编译镜像"></a>编译镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t wisely/ch10docker .</span><br></pre></td></tr></table></figure>
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name ch10 -p 8080:8080 wisely/ch10docker</span><br></pre></td></tr></table></figure>
+<h3 id="Spring-Boot-的测试"><a href="#Spring-Boot-的测试" class="headerlink" title="Spring Boot 的测试"></a>Spring Boot 的测试</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发部署</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/05/Spring-Boot-开发部署与测试-目录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-异步消息-AMQP-实战-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -864,86 +971,6 @@
 
 
   
-    <article id="post-Spring-Batch-Spring-Boot-企业级开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/">Spring Batch Spring Boot 企业级开发</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/" class="archive-article-date">
-  	<time datetime="2018-06-30T15:05:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Spring-Batch-批处理"><a href="#Spring-Batch-批处理" class="headerlink" title="Spring Batch 批处理"></a>Spring Batch 批处理</h4><p>用来处理大量数据操作的框架，主要用来读取大量数据，然后处理后输出成指定的格式。<br>
-        
-          <a class="article-more-a" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring Boot</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring Batch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/30/Spring-Batch-Spring-Boot-企业级开发/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1065,6 +1092,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发部署</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">测试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
               </li>
              
@@ -1093,15 +1128,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1113,27 +1156,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">JVM</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
             
             <div class="clearfix"></div>
