@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>异步消息 AMQP 实战 Spring Boot 企业级开发 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
+  <meta name="description" content="AMQP实战消息的代理的规范，但是不仅兼容JMS，还支持跨语言和平台。AMQP主要实现有RabbitMQ。">
 <meta name="keywords" content="Spring Boot,异步消息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异步消息 AMQP 实战 Spring Boot 企业级开发">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/异步消息-AMQP-实战-Spring-Boot-企业级开发/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
+<meta property="og:description" content="AMQP实战消息的代理的规范，但是不仅兼容JMS，还支持跨语言和平台。AMQP主要实现有RabbitMQ。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-04T08:53:00.456Z">
+<meta property="og:updated_time" content="2018-09-05T06:37:59.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异步消息 AMQP 实战 Spring Boot 企业级开发">
-<meta name="twitter:description" content="AMQP实战1、新建Spring Boot项目依赖无项目信息：groupId:artifactId:package: Spring Boot默认主机为localhost，端口为5672。 2、发送消息及目的地定义123456789101112131415161718192021222324@SpringBootApplicationpublic class Ch934Application imp">
+<meta name="twitter:description" content="AMQP实战消息的代理的规范，但是不仅兼容JMS，还支持跨语言和平台。AMQP主要实现有RabbitMQ。">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -187,7 +187,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="AMQP实战"><a href="#AMQP实战" class="headerlink" title="AMQP实战"></a>AMQP实战</h4><p><strong>1、新建Spring Boot项目</strong><br>依赖无<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
+        <h4 id="AMQP实战"><a href="#AMQP实战" class="headerlink" title="AMQP实战"></a>AMQP实战</h4><p>消息的代理的规范，但是不仅兼容JMS，还支持跨语言和平台。AMQP主要实现有RabbitMQ。<br><a id="more"></a><br><strong>1、新建Spring Boot项目</strong><br>依赖无<br><strong>项目信息：</strong><br>groupId:<br>artifactId:<br>package:</p>
 <p>Spring Boot默认主机为localhost，端口为5672。</p>
 <p><strong>2、发送消息及目的地定义</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class Ch934Application implements CommandLineRunner&#123;</span><br><span class="line"></span><br><span class="line">    //注入Spring Boot配置好的JmsTemplate的Bean</span><br><span class="line">    @Autowired</span><br><span class="line">    RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        SpringApplciation.run(Ch934Applciaton.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //定义队列，名称为my-queue</span><br><span class="line">    @Bean</span><br><span class="line">    public Queue <span class="function"><span class="title">wiselyQueue</span></span>()&#123;</span><br><span class="line">        <span class="built_in">return</span> new Queue(<span class="string">"my-queue"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //通过send方法向目的地发送消息对相关</span><br><span class="line">    @Override</span><br><span class="line">    public void run(String ... args) throws Exception&#123;</span><br><span class="line">        rabbitTemplate.convertAndSend(<span class="string">"my-queue"</span>, <span class="string">"来自Rabbit的问候"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>3、消息监听</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Component</span><br><span class="line">public class Receiver&#123;</span><br><span class="line"></span><br><span class="line">    @RabbitListener(queue = <span class="string">"my-queue"</span>)</span><br><span class="line">    public void receiveMessage(String message)&#123;</span><br><span class="line">        System.out.println(<span class="string">"接收到：&lt;"</span> + message + <span class="string">"&gt;"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -438,6 +438,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
@@ -474,11 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,14 +498,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
               </li>
              
@@ -506,7 +506,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,14 +523,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>系统集成 Spring Integration | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。Spring Integration主要由Message、Channel和Message EndPoint。 Message:用来在不同部分之间传递的参数，两部分组成：消息">
+  <meta name="description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。">
 <meta name="keywords" content="Spring Boot,Spring Integration">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统集成 Spring Integration">
-<meta property="og:url" content="http://yoursite.com/2018/09/04/系统集成-Spring-Integration/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/15/系统集成-Spring-Integration/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。Spring Integration主要由Message、Channel和Message EndPoint。 Message:用来在不同部分之间传递的参数，两部分组成：消息">
+<meta property="og:description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T00:49:57.190Z">
+<meta property="og:updated_time" content="2018-09-05T06:42:43.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统集成 Spring Integration">
-<meta name="twitter:description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。Spring Integration主要由Message、Channel和Message EndPoint。 Message:用来在不同部分之间传递的参数，两部分组成：消息">
+<meta name="twitter:description" content="Spring Integration提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -179,15 +179,15 @@
   
 
         
-        <a href="/2018/09/04/系统集成-Spring-Integration/" class="archive-article-date">
-  	<time datetime="2018-09-04T08:53:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-04</time>
+        <a href="/2018/08/15/系统集成-Spring-Integration/" class="archive-article-date">
+  	<time datetime="2018-08-15T08:53:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Spring-Integration"><a href="#Spring-Integration" class="headerlink" title="Spring Integration"></a>Spring Integration</h4><p>提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。<br>Spring Integration主要由Message、Channel和Message EndPoint。</p>
+        <h4 id="Spring-Integration"><a href="#Spring-Integration" class="headerlink" title="Spring Integration"></a>Spring Integration</h4><p>提供基于EIP(Enterprise Integration Patterns，企业集成模式)的实现，主要解决的问题是不同系统之间交互的问题，通过异步消息驱动来达到系统交互式系统之间的松耦合。<br><a id="more"></a><br>Spring Integration主要由Message、Channel和Message EndPoint。</p>
 <p><strong>Message:</strong><br>用来在不同部分之间传递的参数，两部分组成：<strong>消息体</strong>（payload）、<strong>消息头</strong>（header）。</p>
 <p><strong>消息体：</strong>可以是任何数据类型(XML、JSON，Java对象等)；<br><strong>消息头：</strong>表示的元数据就是解释消息体的内容。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface Message&lt;T&gt;&#123;</span><br><span class="line">    T getPayload();</span><br><span class="line">    MessageHeaders getHeaders();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><strong>Channel(通道)</strong><br>消息发送者发送消息到通道(Channel)，消息接收者从通道(Channel)接收消息。</p>
@@ -276,7 +276,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/09/04/系统集成-Spring-Integration/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/15/系统集成-Spring-Integration/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,9 +290,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/08/21/设计模式分类/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          设计模式分类
+        
+      </div>
+    </a>
   
-    <a href="/2018/09/03/Spring-Security-Spring-Boot-企业级开发/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring Security Spring Boot 企业级开发</div>
+  
+    <a href="/2018/08/14/进程同步以及异步/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">进程同步以及异步</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -439,6 +448,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
@@ -475,11 +492,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -491,14 +508,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
               </li>
              
@@ -507,7 +516,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,14 +533,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">

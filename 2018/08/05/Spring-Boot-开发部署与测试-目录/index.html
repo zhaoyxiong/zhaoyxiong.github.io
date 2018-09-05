@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Spring Boot 开发部署与测试 目录 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="开发热部署模板热部署Spring Loaded的热部署JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。 spring-boot-devtools页面和代码的热部署12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifact&amp;g">
+  <meta name="description" content="开发热部署模板热部署">
 <meta name="keywords" content="Spring Boot,开发部署,测试">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot 开发部署与测试 目录">
 <meta property="og:url" content="http://yoursite.com/2018/08/05/Spring-Boot-开发部署与测试-目录/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="开发热部署模板热部署Spring Loaded的热部署JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。 spring-boot-devtools页面和代码的热部署12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifact&amp;g">
+<meta property="og:description" content="开发热部署模板热部署">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-05T02:07:35.908Z">
+<meta property="og:updated_time" content="2018-09-05T06:36:22.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot 开发部署与测试 目录">
-<meta name="twitter:description" content="开发热部署模板热部署Spring Loaded的热部署JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。 spring-boot-devtools页面和代码的热部署12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifact&amp;g">
+<meta name="twitter:description" content="开发热部署模板热部署">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -187,7 +187,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="开发热部署"><a href="#开发热部署" class="headerlink" title="开发热部署"></a>开发热部署</h3><h4 id="模板热部署"><a href="#模板热部署" class="headerlink" title="模板热部署"></a>模板热部署</h4><h4 id="Spring-Loaded的热部署"><a href="#Spring-Loaded的热部署" class="headerlink" title="Spring Loaded的热部署"></a>Spring Loaded的热部署</h4><p>JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。</p>
+        <h3 id="开发热部署"><a href="#开发热部署" class="headerlink" title="开发热部署"></a>开发热部署</h3><h4 id="模板热部署"><a href="#模板热部署" class="headerlink" title="模板热部署"></a>模板热部署</h4><a id="more"></a>
+<h4 id="Spring-Loaded的热部署"><a href="#Spring-Loaded的热部署" class="headerlink" title="Spring Loaded的热部署"></a>Spring Loaded的热部署</h4><p>JRebelJava开发热部署的最佳工具，对Spring Boot也提供了很好的支持。</p>
 <h4 id="spring-boot-devtools"><a href="#spring-boot-devtools" class="headerlink" title="spring-boot-devtools"></a>spring-boot-devtools</h4><p>页面和代码的热部署<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifact&gt;spring-boot-devtools&lt;/artifact&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
 <h3 id="常规部署"><a href="#常规部署" class="headerlink" title="常规部署"></a>常规部署</h3><h4 id="Jar形式"><a href="#Jar形式" class="headerlink" title="Jar形式"></a>Jar形式</h4><p>1、打包<br>新建Spring Boot项目是选择打包方式是Jar，则只需要：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure></p>
 <p>2、运行<br>可直接使用命令运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar xx.jar</span><br></pre></td></tr></table></figure></p>
@@ -208,12 +209,15 @@
 <h4 id="war形式"><a href="#war形式" class="headerlink" title="war形式"></a>war形式</h4><p>1、打包war<br>新建Spring Boot项目是选择打包方式是war，则需要：<br>修改打包格式为war<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure></p>
 <p>2、打包为jar，部署用war（完成转换）<br>修改pom.xml<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;jar&lt;/packaging&gt;</span><br></pre></td></tr></table></figure></p>
 <p>修改为：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;packaging&gt;war&lt;/packaging&gt;</span><br></pre></td></tr></table></figure></p>
-<p>增加依赖覆盖内嵌tomcat</p>
-<p><dependency><br>    <groupid>org.springframework.boot</groupid><br>    <artifactid>spring-boot-starter-tomcat</artifactid><br>    <scope>provided</scope><br></dependency><br>增加ServletInitializer类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ServletInitializer entends SpringBootServletInitializer&#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder application)&#123;</span><br><span class="line">        <span class="built_in">return</span> application.sources(ch10warApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>增加依赖覆盖内嵌tomcat<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;provided&lt;/scope&gt;   </span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
+<p>增加ServletInitializer类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class ServletInitializer entends SpringBootServletInitializer&#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected SpringApplicationBuilder configure(SpringApplicationBuilder application)&#123;</span><br><span class="line">        <span class="built_in">return</span> application.sources(ch10warApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="云部署—–基于Docker部署"><a href="#云部署—–基于Docker部署" class="headerlink" title="云部署—–基于Docker部署"></a>云部署—–基于Docker部署</h3><p>编译自己的Docker镜像，并运行docker内的容器。使用Dockerfile编译自己的镜像</p>
-<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><h4 id="项目目录及文件"><a href="#项目目录及文件" class="headerlink" title="项目目录及文件"></a>项目目录及文件</h4><h4 id="编译镜像"><a href="#编译镜像" class="headerlink" title="编译镜像"></a>编译镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t wisely/ch10docker .</span><br></pre></td></tr></table></figure>
+<h4 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h4><p>主要指令：<br>1）FROM指令；<br>2）MAINTAINER指令；<br>3）RUN指令；<br>4）CMD指令；<br>5）EXPOSE指令；<br>6）ENV指令；<br>7）ADD指令；<br>8）ENTYPOINT指令；</p>
+<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><h4 id="项目目录及文件"><a href="#项目目录及文件" class="headerlink" title="项目目录及文件"></a>项目目录及文件</h4><h4 id="编译镜像"><a href="#编译镜像" class="headerlink" title="编译镜像"></a>编译镜像</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t wisely/ch10docker .</span><br></pre></td></tr></table></figure>
 <h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name ch10 -p 8080:8080 wisely/ch10docker</span><br></pre></td></tr></table></figure>
-<h3 id="Spring-Boot-的测试"><a href="#Spring-Boot-的测试" class="headerlink" title="Spring Boot 的测试"></a>Spring Boot 的测试</h3>
+<h3 id="Spring-Boot-的测试"><a href="#Spring-Boot-的测试" class="headerlink" title="Spring Boot 的测试"></a>Spring Boot 的测试</h3><p>Spring Boot测试类会自动在项目下添加一个spring-boot-starter-test依赖。</p>
+<h4 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h4><h4 id="业务代码"><a href="#业务代码" class="headerlink" title="业务代码"></a>业务代码</h4><p><strong>实体类</strong><br><strong>数据访问</strong><br><strong>控制器</strong></p>
+<h4 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h4><h4 id="执行测试"><a href="#执行测试" class="headerlink" title="执行测试"></a>执行测试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maven clean package</span><br></pre></td></tr></table></figure>
       
 
       
@@ -342,7 +346,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发热部署"><span class="toc-number">1.</span> <span class="toc-text">开发热部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模板热部署"><span class="toc-number">1.1.</span> <span class="toc-text">模板热部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Loaded的热部署"><span class="toc-number">1.2.</span> <span class="toc-text">Spring Loaded的热部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-boot-devtools"><span class="toc-number">1.3.</span> <span class="toc-text">spring-boot-devtools</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常规部署"><span class="toc-number">2.</span> <span class="toc-text">常规部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jar形式"><span class="toc-number">2.1.</span> <span class="toc-text">Jar形式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#主流的注册服务方式有：init-d和systemd："><span class="toc-number">2.1.1.</span> <span class="toc-text">主流的注册服务方式有：init.d和systemd：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#war形式"><span class="toc-number">2.2.</span> <span class="toc-text">war形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#云部署—–基于Docker部署"><span class="toc-number">3.</span> <span class="toc-text">云部署—–基于Docker部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dockerfile"><span class="toc-number">3.1.</span> <span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Docker"><span class="toc-number">3.2.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目目录及文件"><span class="toc-number">3.3.</span> <span class="toc-text">项目目录及文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译镜像"><span class="toc-number">3.4.</span> <span class="toc-text">编译镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行"><span class="toc-number">3.5.</span> <span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Boot-的测试"><span class="toc-number">4.</span> <span class="toc-text">Spring Boot 的测试</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发热部署"><span class="toc-number">1.</span> <span class="toc-text">开发热部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模板热部署"><span class="toc-number">1.1.</span> <span class="toc-text">模板热部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spring-Loaded的热部署"><span class="toc-number">1.2.</span> <span class="toc-text">Spring Loaded的热部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spring-boot-devtools"><span class="toc-number">1.3.</span> <span class="toc-text">spring-boot-devtools</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常规部署"><span class="toc-number">2.</span> <span class="toc-text">常规部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Jar形式"><span class="toc-number">2.1.</span> <span class="toc-text">Jar形式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#主流的注册服务方式有：init-d和systemd："><span class="toc-number">2.1.1.</span> <span class="toc-text">主流的注册服务方式有：init.d和systemd：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#war形式"><span class="toc-number">2.2.</span> <span class="toc-text">war形式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#云部署—–基于Docker部署"><span class="toc-number">3.</span> <span class="toc-text">云部署—–基于Docker部署</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Dockerfile"><span class="toc-number">3.1.</span> <span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Docker"><span class="toc-number">3.2.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#项目目录及文件"><span class="toc-number">3.3.</span> <span class="toc-text">项目目录及文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译镜像"><span class="toc-number">3.4.</span> <span class="toc-text">编译镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行"><span class="toc-number">3.5.</span> <span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Boot-的测试"><span class="toc-number">4.</span> <span class="toc-text">Spring Boot 的测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#新建项目"><span class="toc-number">4.1.</span> <span class="toc-text">新建项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#业务代码"><span class="toc-number">4.2.</span> <span class="toc-text">业务代码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试用例"><span class="toc-number">4.3.</span> <span class="toc-text">测试用例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#执行测试"><span class="toc-number">4.4.</span> <span class="toc-text">执行测试</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -462,6 +466,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
@@ -498,11 +510,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,14 +526,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
               </li>
              
@@ -530,7 +534,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,14 +551,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
              
               <li class="article-tag-list-item">
