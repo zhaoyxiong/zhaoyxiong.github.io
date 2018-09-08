@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java-se-类加载时块顺序 | 杂货铺</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类加载时，有类的加载优先级：举例说明12345678910111213141516class A&amp;#123;    static int i = 0;    int z;     public A()&amp;#123;        System.out.println(&quot;i is &quot; + i);    &amp;#125;&amp;#125;class B extends A&amp;#123;    static int">
+  <meta name="description" content="类加载时，有类的加载优先级：举例说明">
 <meta name="keywords" content="Javase,Java内置模块">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-se-类加载时块顺序">
 <meta property="og:url" content="http://yoursite.com/2017/10/06/Java-se-类加载时块顺序/index.html">
 <meta property="og:site_name" content="杂货铺">
-<meta property="og:description" content="类加载时，有类的加载优先级：举例说明12345678910111213141516class A&amp;#123;    static int i = 0;    int z;     public A()&amp;#123;        System.out.println(&quot;i is &quot; + i);    &amp;#125;&amp;#125;class B extends A&amp;#123;    static int">
+<meta property="og:description" content="类加载时，有类的加载优先级：举例说明">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-16T15:41:50.489Z">
+<meta property="og:updated_time" content="2018-09-06T03:39:46.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java-se-类加载时块顺序">
-<meta name="twitter:description" content="类加载时，有类的加载优先级：举例说明12345678910111213141516class A&amp;#123;    static int i = 0;    int z;     public A()&amp;#123;        System.out.println(&quot;i is &quot; + i);    &amp;#125;&amp;#125;class B extends A&amp;#123;    static int">
+<meta name="twitter:description" content="类加载时，有类的加载优先级：举例说明">
   
     <link rel="alternative" href="/atom.xml" title="杂货铺" type="application/atom+xml">
   
@@ -187,7 +187,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>类加载时，有类的加载优先级：举例说明<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    static int i = 0;</span><br><span class="line">    int z; </span><br><span class="line">    public <span class="function"><span class="title">A</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"i is "</span> + i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class B extends A&#123;</span><br><span class="line">    static int j = 1;</span><br><span class="line">    public <span class="function"><span class="title">B</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"j is "</span> + j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">static void main(String[] args)&#123;</span><br><span class="line">    new B();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>类加载时，有类的加载优先级：举例说明<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    static int i = 0;</span><br><span class="line">    int z; </span><br><span class="line">    public <span class="function"><span class="title">A</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"i is "</span> + i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class B extends A&#123;</span><br><span class="line">    static int j = 1;</span><br><span class="line">    public <span class="function"><span class="title">B</span></span>()&#123;</span><br><span class="line">        System.out.println(<span class="string">"j is "</span> + j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">static void main(String[] args)&#123;</span><br><span class="line">    new B();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>借此实例说明代码的加载顺序：</p>
 <h4 id="1、静态代码块"><a href="#1、静态代码块" class="headerlink" title="1、静态代码块"></a>1、静态代码块</h4><p>静态代码块的优先级时最高的，类会将所有的class和static加载在方法区中，所以当调用父类的super()时，会先加载父类的静态代码块，然后是子类的静态代码块；</p>
 <h4 id="2、main方法块"><a href="#2、main方法块" class="headerlink" title="2、main方法块"></a>2、main方法块</h4><p>由于此类中使用的main方法，所以跳过main的加载（不会有main）；</p>
@@ -441,14 +441,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Error</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">finall</a>
               </li>
              
@@ -458,6 +450,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,10 +473,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring Security</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
@@ -485,11 +481,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+                <a href="javascript:void(0)" class="js-tag color5">Exception</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
+                <a href="javascript:void(0)" class="js-tag color1">Error</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,7 +497,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异步消息</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">pom.xml</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,18 +518,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">树</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Spring Integration</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,6 +530,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">二叉树</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Spring Integration</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">树</a>
               </li>
             
             <div class="clearfix"></div>
